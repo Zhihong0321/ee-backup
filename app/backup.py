@@ -8,11 +8,12 @@ from botocore.exceptions import NoCredentialsError
 def get_config():
     return {
         "DATABASE_URL": os.getenv("DATABASE_URL"),
-        "R2_ENDPOINT": os.getenv("R2_ENDPOINT_URL"),
-        "R2_ACCESS_KEY": os.getenv("R2_ACCESS_KEY_ID"),
-        "R2_SECRET_KEY": os.getenv("R2_SECRET_ACCESS_KEY"),
-        "R2_BUCKET": os.getenv("R2_BUCKET_NAME"),
+        "R2_ENDPOINT_URL": os.getenv("R2_ENDPOINT_URL"),
+        "R2_ACCESS_KEY_ID": os.getenv("R2_ACCESS_KEY_ID"),
+        "R2_SECRET_ACCESS_KEY": os.getenv("R2_SECRET_ACCESS_KEY"),
+        "R2_BUCKET_NAME": os.getenv("R2_BUCKET_NAME"),
     }
+
 
 def validate_config(config, keys):
     missing = [k for k in keys if not config.get(k)]
@@ -85,17 +86,18 @@ def perform_backup():
 
     # 2. Upload to R2
     try:
-        validate_config(config, ["R2_ENDPOINT", "R2_ACCESS_KEY", "R2_SECRET_KEY", "R2_BUCKET"])
+        validate_config(config, ["R2_ENDPOINT_URL", "R2_ACCESS_KEY_ID", "R2_SECRET_ACCESS_KEY", "R2_BUCKET_NAME"])
         
         s3 = boto3.client(
             's3',
-            endpoint_url=config["R2_ENDPOINT"],
-            aws_access_key_id=config["R2_ACCESS_KEY"],
-            aws_secret_access_key=config["R2_SECRET_KEY"]
+            endpoint_url=config["R2_ENDPOINT_URL"],
+            aws_access_key_id=config["R2_ACCESS_KEY_ID"],
+            aws_secret_access_key=config["R2_SECRET_ACCESS_KEY"]
         )
         
         with open(filepath, "rb") as f:
-            s3.upload_fileobj(f, config["R2_BUCKET"], filename)
+            s3.upload_fileobj(f, config["R2_BUCKET_NAME"], filename)
+
         
         file_size = os.path.getsize(filepath)
         log_backup("SUCCESS", filename, file_size, "Backup uploaded successfully")
