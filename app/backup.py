@@ -6,23 +6,24 @@ import psycopg2
 from botocore.exceptions import NoCredentialsError
 
 def get_config():
-    config = {
+    return {
         "DATABASE_URL": os.getenv("DATABASE_URL"),
         "R2_ENDPOINT": os.getenv("R2_ENDPOINT_URL"),
         "R2_ACCESS_KEY": os.getenv("R2_ACCESS_KEY_ID"),
         "R2_SECRET_KEY": os.getenv("R2_SECRET_ACCESS_KEY"),
         "R2_BUCKET": os.getenv("R2_BUCKET_NAME"),
     }
-    
-    missing_keys = [k for k, v in config.items() if v is None]
-    if missing_keys:
-        raise ValueError(f"Missing required environment variables: {', '.join(missing_keys)}")
-        
-    return config
+
+def validate_config(config, keys):
+    missing = [k for k in keys if not config.get(k)]
+    if missing:
+        raise ValueError(f"Missing environment variables: {', '.join(missing)}")
 
 def get_db_connection():
     config = get_config()
+    validate_config(config, ["DATABASE_URL"])
     return psycopg2.connect(config["DATABASE_URL"])
+
 
 def init_db():
     """Creates the backup log table if it doesn't exist."""
@@ -84,6 +85,8 @@ def perform_backup():
 
     # 2. Upload to R2
     try:
+        validate_config(config, ["R2_ENDPOINT", "R2_ACCESS_KEY", "R2_SECRET_KEY", "R2_BUCKET"])
+        
         s3 = boto3.client(
             's3',
             endpoint_url=config["R2_ENDPOINT"],
