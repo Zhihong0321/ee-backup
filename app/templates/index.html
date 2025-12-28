@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentinel DB Backup</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #c9d1d9;
+            --border-color: #30363d;
+            --accent-color: #58a6ff;
+            --success-color: #238636;
+            --fail-color: #da3633;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 { border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        button {
+            background-color: var(--border-color);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        button:hover { background-color: #21262d; }
+        
+        button.primary {
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+        }
+
+        .log-list {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .log-list th, .log-list td {
+            text-align: left;
+            padding: 12px 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .log-list th { color: var(--accent-color); font-weight: 600; }
+
+        .status-success { color: var(--success-color); }
+        .status-failed { color: var(--fail-color); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h1>Sentinel DB Backup</h1>
+
+    <div class="controls">
+        <div>
+            <strong>Status:</strong> System Active
+        </div>
+        <button class="primary" onclick="triggerBackup()">Trigger Manual Backup</button>
+    </div>
+
+    <table class="log-list">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Status</th>
+                <th>File</th>
+                <th>Size</th>
+                <th>Message</th>
+            </tr>
+        </thead>
+        <tbody id="log-body">
+            {% for log in logs %}
+            <tr>
+                <td>{{ log.timestamp }}</td>
+                <td class="{{ 'status-success' if log.status == 'SUCCESS' else 'status-failed' }}">{{ log.status }}</td>
+                <td>{{ log.filename }}</td>
+                <td>{{ log.size }}</td>
+                <td>{{ log.message }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        async function triggerBackup() {
+            const btn = document.querySelector('button.primary');
+            btn.innerText = "Starting...";
+            btn.disabled = true;
+
+            try {
+                await fetch('/trigger-backup', { method: 'POST' });
+                alert("Backup started in background. Refresh in a minute to see logs.");
+            } catch (e) {
+                alert("Error triggering backup");
+            } finally {
+                btn.innerText = "Trigger Manual Backup";
+                btn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>

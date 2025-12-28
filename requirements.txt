@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+jinja2
+python-multipart
+apscheduler
+boto3
+psycopg2-binary
+python-dotenv
+httpx
