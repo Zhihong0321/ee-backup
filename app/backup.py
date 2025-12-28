@@ -6,13 +6,19 @@ import psycopg2
 from botocore.exceptions import NoCredentialsError
 
 def get_config():
-    return {
+    config = {
         "DATABASE_URL": os.getenv("DATABASE_URL"),
         "R2_ENDPOINT": os.getenv("R2_ENDPOINT_URL"),
         "R2_ACCESS_KEY": os.getenv("R2_ACCESS_KEY_ID"),
         "R2_SECRET_KEY": os.getenv("R2_SECRET_ACCESS_KEY"),
         "R2_BUCKET": os.getenv("R2_BUCKET_NAME"),
     }
+    
+    missing_keys = [k for k, v in config.items() if v is None]
+    if missing_keys:
+        raise ValueError(f"Missing required environment variables: {', '.join(missing_keys)}")
+        
+    return config
 
 def get_db_connection():
     config = get_config()
