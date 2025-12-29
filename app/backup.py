@@ -126,18 +126,8 @@ def get_test_db_info():
         cur.execute("SELECT count(*) FROM information_schema.tables WHERE table_schema = 'public'")
         info["table_count"] = cur.fetchone()[0]
         
-        # Try to find the latest update across common timestamp columns if tables exist
+        # Check if database has data
         if info["table_count"] > 0:
-            cur.execute("""
-                SELECT MAX(last_modified) FROM (
-                    SELECT last_modified FROM (
-                        SELECT table_name FROM information_schema.columns 
-                        WHERE column_name = 'updated_at' OR column_name = 'created_at'
-                    ) t, LATERAL (SELECT MAX(updated_at) as last_modified FROM public.table_name)
-                ) subquery
-            """)
-            # Note: The above dynamic query is complex, simpler approach for now:
-            # Just check if there's any data in a likely table or just use current timestamp of restore
             info["latest_update"] = "Connected"
             
         cur.close()
