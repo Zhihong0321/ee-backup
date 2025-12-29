@@ -144,27 +144,31 @@
             <ul class="column-list">
                 {% for col in data.columns %}
                 <li class="column-item" data-col="{{ col.name }}">
-                    <div class="col-details">
-                        <span class="col-name">{{ col.name }}</span>
-                        {% if col.name == 'id' %}
-                            <span class="pk-badge" style="margin-left: 8px;">PK</span>
-                        {% endif %}
-                        {% for fk in data.foreign_keys %}
-                            {% if fk.column == col.name %}
-                                <span class="fk-badge" style="margin-left: 8px;" title="Ref: {{ fk.references_table }}.{{ fk.references_column }}">FK</span>
+                    <div style="flex-grow: 1;">
+                        <div class="col-details">
+                            <span class="col-name">{{ col.name }}</span>
+                            {% if col.name == 'id' %}
+                                <span class="pk-badge" style="margin-left: 8px;">PK</span>
                             {% endif %}
-                        {% endfor %}
+                            {% for fk in data.foreign_keys %}
+                                {% if fk.column == col.name %}
+                                    <span class="fk-badge" style="margin-left: 8px;" title="Ref: {{ fk.references_table }}.{{ fk.references_column }}">FK</span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div style="font-size: 11px; color: #8b949e; margin-top: 2px;">
+                            {% if col.description %}
+                                {{ col.description }}
+                            {% else %}
+                                <span style="font-style: italic; opacity: 0.5;">No description</span>
+                            {% endif %}
+                        </div>
                     </div>
-                    <div style="text-align: right;">
+                    <div style="text-align: right; min-width: 80px;">
                         <span class="col-type">{{ col.type }}</span>
                         {% if not col.nullable %}<span class="col-meta">NN</span>{% endif %}
                     </div>
                 </li>
-                {% if col.description %}
-                <li style="padding: 4px 15px; font-size: 11px; color: #8b949e; border-bottom: 1px solid #30363d;">
-                    {{ col.description }}
-                </li>
-                {% endif %}
                 {% endfor %}
             </ul>
         </div>

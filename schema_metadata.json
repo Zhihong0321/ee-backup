@@ -1,6 +1,6 @@
 {
     "system_logs": {
-        "description": "",
+        "description": "System or audit logs.",
         "columns": [
             {
                 "name": "id",
@@ -42,7 +42,7 @@
                 "name": "metadata",
                 "type": "jsonb",
                 "nullable": true,
-                "description": ""
+                "description": "Additional JSON data for context."
             },
             {
                 "name": "created_at",
@@ -54,7 +54,7 @@
         "foreign_keys": []
     },
     "invoice_item": {
-        "description": "",
+        "description": "Stores financial invoice records and details.",
         "columns": [
             {
                 "name": "id",
@@ -72,7 +72,7 @@
                 "name": "last_synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "created_at",
@@ -84,7 +84,7 @@
                 "name": "updated_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "description",
@@ -96,19 +96,19 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "qty",
                 "type": "integer",
                 "nullable": true,
-                "description": ""
+                "description": "Count or quantity of items."
             },
             {
                 "name": "amount",
                 "type": "numeric",
                 "nullable": true,
-                "description": ""
+                "description": "Monetary value."
             },
             {
                 "name": "unit_price",
@@ -120,13 +120,13 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "is_a_package",
@@ -144,7 +144,7 @@
                 "name": "linked_package",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Package table."
             },
             {
                 "name": "epp",
@@ -156,7 +156,7 @@
                 "name": "linked_invoice",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Invoice table."
             },
             {
                 "name": "sort",
@@ -168,7 +168,7 @@
                 "name": "linked_voucher",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Voucher table."
             },
             {
                 "name": "voucher_remark",
@@ -180,7 +180,7 @@
         "foreign_keys": []
     },
     "customer": {
-        "description": "",
+        "description": "Contains customer profiles and contact information.",
         "columns": [
             {
                 "name": "id",
@@ -198,7 +198,7 @@
                 "name": "last_synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "created_at",
@@ -210,13 +210,13 @@
                 "name": "updated_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             }
         ],
         "foreign_keys": []
     },
     "seda_registration": {
-        "description": "",
+        "description": "Data related to SEDA (Sustainable Energy Development Authority) registrations.",
         "columns": [
             {
                 "name": "id",
@@ -234,7 +234,7 @@
                 "name": "last_synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "created_at",
@@ -246,19 +246,19 @@
                 "name": "updated_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "reg_status",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Current status or state of the record."
             },
             {
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "drawing_system_submitted",
@@ -270,7 +270,7 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "state",
@@ -282,7 +282,7 @@
                 "name": "redex_status",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Current status or state of the record."
             },
             {
                 "name": "roof_images",
@@ -306,7 +306,7 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "agent",
@@ -336,7 +336,7 @@
                 "name": "linked_customer",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Customer table."
             },
             {
                 "name": "inverter_kwac",
@@ -372,13 +372,13 @@
                 "name": "g_electric_folder_link",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "URL or path to the associated file/document."
             },
             {
                 "name": "g_roof_folder_link",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "URL or path to the associated file/document."
             },
             {
                 "name": "installation_address",
@@ -390,7 +390,7 @@
                 "name": "linked_invoice",
                 "type": "ARRAY",
                 "nullable": true,
-                "description": ""
+                "description": "List of references to the Invoice table."
             },
             {
                 "name": "customer_signature",
@@ -402,7 +402,7 @@
                 "name": "email",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Email address of the entity."
             },
             {
                 "name": "ic_copy_back",
@@ -462,7 +462,7 @@
                 "name": "seda_status",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Current status or state of the record."
             },
             {
                 "name": "version",
@@ -540,7 +540,7 @@
                 "name": "tnb_meter_status",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Current status or state of the record."
             },
             {
                 "name": "first_completion_date",
@@ -558,7 +558,7 @@
                 "name": "mykad_pdf",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "URL or path to the associated file/document."
             },
             {
                 "name": "nem_type",
@@ -600,7 +600,7 @@
                 "name": "check_tnb_bill_and_meter_image",
                 "type": "boolean",
                 "nullable": true,
-                "description": ""
+                "description": "URL or path to the associated file/document."
             },
             {
                 "name": "check_mykad",
@@ -624,7 +624,7 @@
                 "name": "drawing_engineering_seda_pdf",
                 "type": "ARRAY",
                 "nullable": true,
-                "description": ""
+                "description": "URL or path to the associated file/document."
             }
         ],
         "foreign_keys": []
@@ -648,7 +648,7 @@
                 "name": "last_synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "created_at",
@@ -660,13 +660,13 @@
                 "name": "updated_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "category_name",
@@ -678,25 +678,25 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "linked_products",
                 "type": "ARRAY",
                 "nullable": true,
-                "description": ""
+                "description": "List of references to the Products table."
             },
             {
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             }
         ],
         "foreign_keys": []
     },
     "agent_content": {
-        "description": "",
+        "description": "Records related to sales agents or system agents.",
         "columns": [
             {
                 "name": "id",
@@ -714,31 +714,31 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "google_drive_link",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "URL or path to the associated file/document."
             },
             {
                 "name": "active",
                 "type": "boolean",
                 "nullable": true,
-                "description": ""
+                "description": "Boolean flag indicating if the record is currently active."
             },
             {
                 "name": "linked_category",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Category table."
             },
             {
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "title",
@@ -756,19 +756,19 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             }
         ],
         "foreign_keys": []
     },
     "agent_monthly_commission": {
-        "description": "",
+        "description": "Records related to sales agents or system agents.",
         "columns": [
             {
                 "name": "id",
@@ -786,19 +786,19 @@
                 "name": "linked_invoice",
                 "type": "ARRAY",
                 "nullable": true,
-                "description": ""
+                "description": "List of references to the Invoice table."
             },
             {
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "linked_agent",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Agent table."
             },
             {
                 "name": "record_month",
@@ -822,19 +822,19 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             }
         ],
         "foreign_keys": []
@@ -858,7 +858,7 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "description",
@@ -870,13 +870,13 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "report_type",
@@ -906,7 +906,7 @@
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "is_a_update",
@@ -936,13 +936,13 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "name",
@@ -960,13 +960,13 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             }
         ],
         "foreign_keys": []
@@ -996,19 +996,19 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "logo",
@@ -1020,7 +1020,7 @@
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             }
         ],
         "foreign_keys": []
@@ -1050,13 +1050,13 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "name",
@@ -1068,13 +1068,13 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "whatsapp_no",
@@ -1122,13 +1122,13 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "position_to_offer",
@@ -1146,19 +1146,19 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "linked_agent",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Agent table."
             },
             {
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             }
         ],
         "foreign_keys": []
@@ -1182,7 +1182,7 @@
                 "name": "last_synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "created_at",
@@ -1194,31 +1194,31 @@
                 "name": "updated_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "total_cost",
                 "type": "integer",
                 "nullable": true,
-                "description": ""
+                "description": "Monetary value."
             },
             {
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "product",
@@ -1230,7 +1230,7 @@
                 "name": "qty",
                 "type": "integer",
                 "nullable": true,
-                "description": ""
+                "description": "Count or quantity of items."
             },
             {
                 "name": "sort",
@@ -1278,13 +1278,13 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "invoice_count",
@@ -1302,13 +1302,13 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             }
         ],
         "foreign_keys": []
@@ -1332,7 +1332,7 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "cat_name",
@@ -1344,25 +1344,25 @@
                 "name": "linked_agent_content",
                 "type": "ARRAY",
                 "nullable": true,
-                "description": ""
+                "description": "List of references to the Agent Content table."
             },
             {
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             }
         ],
         "foreign_keys": []
@@ -1386,7 +1386,7 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "dealer_code",
@@ -1398,13 +1398,13 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "checkin_person",
@@ -1428,7 +1428,7 @@
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "today_report",
@@ -1458,25 +1458,25 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "user",
@@ -1488,7 +1488,7 @@
                 "name": "user_input",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Raw input provided by the user."
             }
         ],
         "foreign_keys": []
@@ -1524,7 +1524,7 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "join_date",
@@ -1542,19 +1542,19 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             }
         ],
         "foreign_keys": []
@@ -1578,13 +1578,13 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "department_name",
@@ -1596,7 +1596,7 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "current_task_last_update",
@@ -1632,7 +1632,7 @@
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             }
         ],
         "foreign_keys": []
@@ -1656,13 +1656,13 @@
                 "name": "linked_department",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Department table."
             },
             {
                 "name": "linked_comment",
                 "type": "ARRAY",
                 "nullable": true,
-                "description": ""
+                "description": "List of references to the Comment table."
             },
             {
                 "name": "content",
@@ -1674,19 +1674,19 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "report_type",
@@ -1698,7 +1698,7 @@
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             }
         ],
         "foreign_keys": []
@@ -1728,25 +1728,25 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "linked_report",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Report table."
             },
             {
                 "name": "by",
@@ -1758,7 +1758,7 @@
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             }
         ],
         "foreign_keys": []
@@ -1782,19 +1782,19 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "date",
@@ -1806,7 +1806,7 @@
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             }
         ],
         "foreign_keys": []
@@ -1854,19 +1854,19 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "file",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "URL or path to the associated file/document."
             },
             {
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "date_of_circular",
@@ -1878,19 +1878,19 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "active",
                 "type": "boolean",
                 "nullable": true,
-                "description": ""
+                "description": "Boolean flag indicating if the record is currently active."
             }
         ],
         "foreign_keys": []
@@ -1914,7 +1914,7 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "year",
@@ -1932,7 +1932,7 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "degradation",
@@ -1944,13 +1944,13 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             }
         ],
         "foreign_keys": []
@@ -1980,31 +1980,31 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "linked_invoice",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Invoice table."
             },
             {
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             }
         ],
         "foreign_keys": []
@@ -2028,7 +2028,7 @@
                 "name": "last_synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "created_at",
@@ -2040,7 +2040,7 @@
                 "name": "updated_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "payment_method",
@@ -2052,31 +2052,31 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "amount",
                 "type": "numeric",
                 "nullable": true,
-                "description": ""
+                "description": "Monetary value."
             },
             {
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "linked_agent",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Agent table."
             },
             {
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "remark",
@@ -2094,13 +2094,13 @@
                 "name": "linked_invoice",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Invoice table."
             },
             {
                 "name": "linked_customer",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Customer table."
             },
             {
                 "name": "payment_index",
@@ -2166,7 +2166,7 @@
         "foreign_keys": []
     },
     "invoice_payment_planning": {
-        "description": "",
+        "description": "Stores financial invoice records and details.",
         "columns": [
             {
                 "name": "id",
@@ -2184,7 +2184,7 @@
                 "name": "linked_invoice",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Invoice table."
             },
             {
                 "name": "payment_method_3",
@@ -2208,7 +2208,7 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "epp_option_3",
@@ -2262,19 +2262,19 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "epp_option_1",
@@ -2304,7 +2304,7 @@
         "foreign_keys": []
     },
     "agent_monthly_perf": {
-        "description": "",
+        "description": "Records related to sales agents or system agents.",
         "columns": [
             {
                 "name": "id",
@@ -2322,7 +2322,7 @@
                 "name": "last_synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "created_at",
@@ -2334,7 +2334,7 @@
                 "name": "updated_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "total_amount",
@@ -2346,7 +2346,7 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "record_month",
@@ -2358,25 +2358,25 @@
                 "name": "linked_user",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the User table."
             },
             {
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "linked_invoice",
                 "type": "ARRAY",
                 "nullable": true,
-                "description": ""
+                "description": "List of references to the Invoice table."
             },
             {
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "all_full_on_date",
@@ -2466,7 +2466,7 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "paid_at",
@@ -2514,7 +2514,7 @@
                 "name": "link_status",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Current status or state of the record."
             },
             {
                 "name": "target_table",
@@ -2556,7 +2556,7 @@
                 "name": "updated_at",
                 "type": "timestamp without time zone",
                 "nullable": false,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "agent_id",
@@ -2574,7 +2574,7 @@
                 "name": "amount",
                 "type": "numeric",
                 "nullable": false,
-                "description": ""
+                "description": "Monetary value."
             },
             {
                 "name": "description",
@@ -2586,7 +2586,7 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": false,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "report_id",
@@ -2604,25 +2604,25 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "linked_agent",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Agent table."
             },
             {
                 "name": "linked_invoice",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Invoice table."
             }
         ],
         "foreign_keys": []
@@ -2652,7 +2652,7 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "name",
@@ -2664,25 +2664,25 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "email",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Email address of the entity."
             },
             {
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             }
         ],
         "foreign_keys": []
@@ -2730,7 +2730,7 @@
                 "name": "status",
                 "type": "text",
                 "nullable": false,
-                "description": ""
+                "description": "Current status or state of the record."
             },
             {
                 "name": "created_at",
@@ -2772,7 +2772,7 @@
         "foreign_keys": []
     },
     "discovery_logs": {
-        "description": "",
+        "description": "System or audit logs.",
         "columns": [
             {
                 "name": "id",
@@ -2808,7 +2808,7 @@
                 "name": "link_status",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Current status or state of the record."
             },
             {
                 "name": "target_table",
@@ -2862,7 +2862,7 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "baseprice",
@@ -2874,7 +2874,7 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "formula_name",
@@ -2916,7 +2916,7 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "dcac_ratio",
@@ -2928,13 +2928,13 @@
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             }
         ],
         "foreign_keys": []
     },
     "agent_daily_report": {
-        "description": "",
+        "description": "Records related to sales agents or system agents.",
         "columns": [
             {
                 "name": "id",
@@ -2952,7 +2952,7 @@
                 "name": "last_synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "created_at",
@@ -2964,7 +2964,7 @@
                 "name": "updated_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "activity_type",
@@ -2976,19 +2976,19 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "linked_user",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the User table."
             },
             {
                 "name": "linked_customer",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Customer table."
             },
             {
                 "name": "report_point",
@@ -3000,7 +3000,7 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "tag",
@@ -3018,7 +3018,7 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "remark",
@@ -3054,7 +3054,7 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "title",
@@ -3066,13 +3066,13 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "checked_agent",
@@ -3084,13 +3084,13 @@
                 "name": "gallery_image",
                 "type": "ARRAY",
                 "nullable": true,
-                "description": ""
+                "description": "URL or path to the associated file/document."
             },
             {
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "youtube_1",
@@ -3120,7 +3120,7 @@
                 "name": "last_synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "created_at",
@@ -3132,7 +3132,7 @@
                 "name": "updated_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "refund_policy",
@@ -3150,7 +3150,7 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "installation_related",
@@ -3174,13 +3174,13 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "warranty",
@@ -3216,13 +3216,13 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "lead_name",
@@ -3240,19 +3240,19 @@
                 "name": "linked_agent",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Agent table."
             },
             {
                 "name": "linked_invoice",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Invoice table."
             },
             {
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "refer_by",
@@ -3264,13 +3264,13 @@
                 "name": "status",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Current status or state of the record."
             },
             {
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             }
         ],
         "foreign_keys": []
@@ -3294,13 +3294,13 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "panel_type",
@@ -3318,13 +3318,13 @@
                 "name": "linked_invoice",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Invoice table."
             },
             {
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "sun_peak",
@@ -3336,7 +3336,7 @@
                 "name": "linked_ori_bill",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Ori Bill table."
             },
             {
                 "name": "after_solar_bill",
@@ -3372,7 +3372,7 @@
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             }
         ],
         "foreign_keys": []
@@ -3396,7 +3396,7 @@
                 "name": "linked_customer",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Customer table."
             },
             {
                 "name": "terminal",
@@ -3408,7 +3408,7 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "payment_date",
@@ -3420,25 +3420,25 @@
                 "name": "amount",
                 "type": "integer",
                 "nullable": true,
-                "description": ""
+                "description": "Monetary value."
             },
             {
                 "name": "linked_installment",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Installment table."
             },
             {
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "linked_agent",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Agent table."
             },
             {
                 "name": "attachment",
@@ -3456,13 +3456,13 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "linked_invoice",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Invoice table."
             },
             {
                 "name": "issuer_bank",
@@ -3474,7 +3474,7 @@
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             }
         ],
         "foreign_keys": []
@@ -3498,19 +3498,19 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "link_customer",
@@ -3534,7 +3534,7 @@
                 "name": "status",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Current status or state of the record."
             },
             {
                 "name": "title",
@@ -3552,7 +3552,7 @@
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             }
         ],
         "foreign_keys": []
@@ -3600,7 +3600,7 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "whatsapp_click",
@@ -3612,19 +3612,19 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             }
         ],
         "foreign_keys": []
@@ -3672,7 +3672,7 @@
                 "name": "updated_at",
                 "type": "timestamp without time zone",
                 "nullable": false,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             }
         ],
         "foreign_keys": []
@@ -3768,13 +3768,13 @@
                 "name": "synced_at",
                 "type": "timestamp without time zone",
                 "nullable": false,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "updated_at",
                 "type": "timestamp without time zone",
                 "nullable": false,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             }
         ],
         "foreign_keys": []
@@ -3798,7 +3798,7 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "201_and_above",
@@ -3822,7 +3822,7 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "usage",
@@ -3834,7 +3834,7 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "jumlah",
@@ -3858,7 +3858,7 @@
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             }
         ],
         "foreign_keys": []
@@ -3918,7 +3918,7 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "st_total",
@@ -3948,7 +3948,7 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "icpt_surcharge",
@@ -3996,13 +3996,13 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             }
         ],
         "foreign_keys": []
@@ -4056,13 +4056,13 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             }
         ],
         "foreign_keys": []
     },
     "customer_profile": {
-        "description": "",
+        "description": "Contains customer profiles and contact information.",
         "columns": [
             {
                 "name": "id",
@@ -4080,7 +4080,7 @@
                 "name": "last_synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "created_at",
@@ -4092,13 +4092,13 @@
                 "name": "updated_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "linked_agent",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Agent table."
             },
             {
                 "name": "address",
@@ -4116,7 +4116,7 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "contact",
@@ -4128,19 +4128,19 @@
                 "name": "status",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Current status or state of the record."
             },
             {
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "whatsapp",
@@ -4170,7 +4170,7 @@
                 "name": "group_status",
                 "type": "boolean",
                 "nullable": true,
-                "description": ""
+                "description": "Current status or state of the record."
             }
         ],
         "foreign_keys": []
@@ -4194,7 +4194,7 @@
                 "name": "last_synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "created_at",
@@ -4206,13 +4206,13 @@
                 "name": "updated_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "usage_kwh",
@@ -4248,7 +4248,7 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "usage_normal",
@@ -4260,7 +4260,7 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "bill_total_normal",
@@ -4308,7 +4308,7 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "name",
@@ -4320,13 +4320,13 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "oversea_credit_card",
@@ -4344,7 +4344,7 @@
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "local_credit_card_rate",
@@ -4386,25 +4386,25 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "price",
                 "type": "integer",
                 "nullable": true,
-                "description": ""
+                "description": "Monetary value."
             },
             {
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "ratio",
@@ -4434,7 +4434,7 @@
                 "name": "synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "micro_2_2",
@@ -4470,7 +4470,7 @@
                 "name": "last_synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "created_at",
@@ -4482,13 +4482,13 @@
                 "name": "updated_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "linked_package_item",
                 "type": "ARRAY",
                 "nullable": true,
-                "description": ""
+                "description": "List of references to the Package Item table."
             },
             {
                 "name": "package_name",
@@ -4500,13 +4500,13 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "price",
                 "type": "numeric",
                 "nullable": true,
-                "description": ""
+                "description": "Monetary value."
             },
             {
                 "name": "panel",
@@ -4518,13 +4518,13 @@
                 "name": "active",
                 "type": "boolean",
                 "nullable": true,
-                "description": ""
+                "description": "Boolean flag indicating if the record is currently active."
             },
             {
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "need_approval",
@@ -4548,7 +4548,7 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "max_discount",
@@ -4596,7 +4596,7 @@
                 "name": "last_synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "created_at",
@@ -4608,13 +4608,13 @@
                 "name": "updated_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "linked_brand",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Brand table."
             },
             {
                 "name": "inventory",
@@ -4632,13 +4632,13 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "warranty_name",
@@ -4650,7 +4650,7 @@
                 "name": "active",
                 "type": "boolean",
                 "nullable": true,
-                "description": ""
+                "description": "Boolean flag indicating if the record is currently active."
             },
             {
                 "name": "cost_price",
@@ -4674,7 +4674,7 @@
                 "name": "linked_category",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Category table."
             },
             {
                 "name": "name",
@@ -4686,7 +4686,7 @@
                 "name": "warranty_link",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "URL or path to the associated file/document."
             },
             {
                 "name": "label",
@@ -4716,7 +4716,7 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "inverter_rating",
@@ -4746,7 +4746,7 @@
                 "name": "last_synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "created_at",
@@ -4758,7 +4758,7 @@
                 "name": "updated_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "title",
@@ -4770,7 +4770,7 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "invoice_description",
@@ -4788,7 +4788,7 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "voucher_code",
@@ -4800,7 +4800,7 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "terms_conditions",
@@ -4812,7 +4812,7 @@
                 "name": "active",
                 "type": "boolean",
                 "nullable": true,
-                "description": ""
+                "description": "Boolean flag indicating if the record is currently active."
             },
             {
                 "name": "auto_cancel_voucher",
@@ -4884,7 +4884,7 @@
                 "name": "last_synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "created_at",
@@ -4896,13 +4896,13 @@
                 "name": "updated_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "name",
@@ -4914,7 +4914,7 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "type",
@@ -4926,13 +4926,13 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             }
         ],
         "foreign_keys": []
     },
     "invoice": {
-        "description": "",
+        "description": "Stores financial invoice records and details.",
         "columns": [
             {
                 "name": "id",
@@ -4950,7 +4950,7 @@
                 "name": "last_synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "created_at",
@@ -4962,7 +4962,7 @@
                 "name": "updated_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "visit",
@@ -4980,7 +4980,7 @@
                 "name": "linked_seda_registration",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Seda Registration table."
             },
             {
                 "name": "normal_commission",
@@ -4992,7 +4992,7 @@
                 "name": "linked_agent",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Agent table."
             },
             {
                 "name": "performance_tier_month",
@@ -5010,7 +5010,7 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "need_approval",
@@ -5022,7 +5022,7 @@
                 "name": "linked_package",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Package table."
             },
             {
                 "name": "locked_package",
@@ -5034,7 +5034,7 @@
                 "name": "linked_customer",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Customer table."
             },
             {
                 "name": "panel_qty",
@@ -5052,7 +5052,7 @@
                 "name": "linked_agreement",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Agreement table."
             },
             {
                 "name": "performance_tier_year",
@@ -5082,7 +5082,7 @@
                 "name": "approval_status",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Current status or state of the record."
             },
             {
                 "name": "1st_payment_date",
@@ -5124,19 +5124,19 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "linked_payment",
                 "type": "ARRAY",
                 "nullable": true,
-                "description": ""
+                "description": "List of references to the Payment table."
             },
             {
                 "name": "amount",
                 "type": "numeric",
                 "nullable": true,
-                "description": ""
+                "description": "Monetary value."
             },
             {
                 "name": "invoice_date",
@@ -5160,7 +5160,7 @@
                 "name": "linked_stock_transaction",
                 "type": "ARRAY",
                 "nullable": true,
-                "description": ""
+                "description": "List of references to the Stock Transaction table."
             },
             {
                 "name": "stamp_cash_price",
@@ -5178,7 +5178,7 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "stock_status_inv",
@@ -5190,7 +5190,7 @@
                 "name": "linked_invoice_item",
                 "type": "ARRAY",
                 "nullable": true,
-                "description": ""
+                "description": "List of references to the Invoice Item table."
             },
             {
                 "name": "perf_tier_commission",
@@ -5202,7 +5202,7 @@
                 "name": "linked_agent_monthly_perf",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Agent Monthly Perf table."
             },
             {
                 "name": "how_you_win",
@@ -5214,7 +5214,7 @@
                 "name": "stock_status",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Current status or state of the record."
             },
             {
                 "name": "customer_average_tnb",
@@ -5232,7 +5232,7 @@
                 "name": "linked_roof_image",
                 "type": "ARRAY",
                 "nullable": true,
-                "description": ""
+                "description": "List of references to the Roof Image table."
             },
             {
                 "name": "description",
@@ -5250,19 +5250,19 @@
                 "name": "linked_notification",
                 "type": "ARRAY",
                 "nullable": true,
-                "description": ""
+                "description": "List of references to the Notification table."
             },
             {
                 "name": "linked_follow_up",
                 "type": "ARRAY",
                 "nullable": true,
-                "description": ""
+                "description": "List of references to the Follow Up table."
             },
             {
                 "name": "case_status",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Current status or state of the record."
             },
             {
                 "name": "referrer_name",
@@ -5346,7 +5346,7 @@
                 "name": "linked_voucher",
                 "type": "ARRAY",
                 "nullable": true,
-                "description": ""
+                "description": "List of references to the Voucher table."
             },
             {
                 "name": "approved_toberemove",
@@ -5358,25 +5358,25 @@
                 "name": "user_manual_pdf",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "URL or path to the associated file/document."
             },
             {
                 "name": "linked_payment_plan",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Payment Plan table."
             },
             {
                 "name": "linked_saving_report",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Saving Report table."
             },
             {
                 "name": "linked_lead_from_customer",
                 "type": "ARRAY",
                 "nullable": true,
-                "description": ""
+                "description": "List of references to the Lead From Customer table."
             },
             {
                 "name": "achieved_monthly_anp",
@@ -5424,7 +5424,7 @@
                 "name": "last_synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "created_at",
@@ -5436,7 +5436,7 @@
                 "name": "updated_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "bank",
@@ -5448,19 +5448,19 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "interest_charges",
@@ -5478,7 +5478,7 @@
         "foreign_keys": []
     },
     "agent": {
-        "description": "",
+        "description": "Records related to sales agents or system agents.",
         "columns": [
             {
                 "name": "id",
@@ -5496,7 +5496,7 @@
                 "name": "last_synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "created_at",
@@ -5508,19 +5508,19 @@
                 "name": "updated_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "linked_user_login",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the User Login table."
             },
             {
                 "name": "name",
@@ -5544,7 +5544,7 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "last_update_annual_sales",
@@ -5586,7 +5586,7 @@
                 "name": "created_by",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "ID or Name of the user/system that created this record."
             },
             {
                 "name": "tree_seed",
@@ -5598,7 +5598,7 @@
                 "name": "email",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Email address of the entity."
             },
             {
                 "name": "banker",
@@ -5682,7 +5682,7 @@
                 "name": "status",
                 "type": "character varying",
                 "nullable": true,
-                "description": ""
+                "description": "Current status or state of the record."
             },
             {
                 "name": "error_message",
@@ -5784,7 +5784,7 @@
                 "name": "metadata",
                 "type": "jsonb",
                 "nullable": true,
-                "description": ""
+                "description": "Additional JSON data for context."
             },
             {
                 "name": "created_at",
@@ -5796,7 +5796,7 @@
                 "name": "updated_at",
                 "type": "timestamp without time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             }
         ],
         "foreign_keys": [
@@ -5850,7 +5850,7 @@
                 "name": "updated_at",
                 "type": "timestamp without time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             }
         ],
         "foreign_keys": []
@@ -5910,7 +5910,7 @@
                 "name": "is_active",
                 "type": "boolean",
                 "nullable": true,
-                "description": ""
+                "description": "Boolean flag indicating if the record is currently active."
             },
             {
                 "name": "schedule",
@@ -5946,7 +5946,7 @@
                 "name": "updated_at",
                 "type": "timestamp without time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "model",
@@ -5976,7 +5976,7 @@
                 "name": "updated_at",
                 "type": "timestamp without time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "model",
@@ -6030,7 +6030,7 @@
                 "name": "is_active",
                 "type": "boolean",
                 "nullable": true,
-                "description": ""
+                "description": "Boolean flag indicating if the record is currently active."
             },
             {
                 "name": "last_run_at",
@@ -6048,7 +6048,7 @@
                 "name": "updated_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             }
         ],
         "foreign_keys": []
@@ -6096,7 +6096,7 @@
                 "name": "status",
                 "type": "character varying",
                 "nullable": true,
-                "description": ""
+                "description": "Current status or state of the record."
             },
             {
                 "name": "retry_count",
@@ -6120,7 +6120,7 @@
                 "name": "updated_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             }
         ],
         "foreign_keys": [
@@ -6240,7 +6240,7 @@
                 "name": "last_synced_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp of the last synchronization with the external system."
             },
             {
                 "name": "created_at",
@@ -6252,7 +6252,7 @@
                 "name": "updated_at",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": "Timestamp when the record was last updated."
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "check_in_report_today",
@@ -6270,13 +6270,13 @@
                 "name": "created_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was created."
             },
             {
                 "name": "linked_agent_profile",
                 "type": "text",
                 "nullable": true,
-                "description": ""
+                "description": "Reference to the Agent Profile table."
             },
             {
                 "name": "authentication",
@@ -6306,7 +6306,7 @@
                 "name": "modified_date",
                 "type": "timestamp with time zone",
                 "nullable": true,
-                "description": ""
+                "description": "Timestamp when the record was last modified."
             },
             {
                 "name": "agent_code",
@@ -6318,7 +6318,7 @@
         "foreign_keys": []
     },
     "_admin_backup_logs": {
-        "description": "",
+        "description": "System or audit logs.",
         "columns": [
             {
                 "name": "id",
@@ -6336,7 +6336,7 @@
                 "name": "status",
                 "type": "character varying",
                 "nullable": true,
-                "description": ""
+                "description": "Current status or state of the record."
             },
             {
                 "name": "filename",
