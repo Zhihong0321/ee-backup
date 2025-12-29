@@ -81,7 +81,38 @@
         <button class="primary" onclick="triggerBackup()">Trigger Manual Backup</button>
     </div>
 
-    <table class="log-list">
+    {% if test_db_configured %}
+    <div style="margin-top: 30px;">
+        <h2>Restore to Test DB</h2>
+        <p style="font-size: 0.9em; color: #8b949e;">Restoring will <strong>WIPE</strong> the testing database and load the selected backup.</p>
+        <table class="log-list">
+            <thead>
+                <tr>
+                    <th>Backup File</th>
+                    <th>Size</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for backup in backups %}
+                <tr>
+                    <td>{{ backup.filename }}</td>
+                    <td>{{ (backup.size / (1024*1024))|round(2) }} MB</td>
+                    <td>{{ backup.last_modified }}</td>
+                    <td>
+                        <button onclick="restoreBackup('{{ backup.filename }}')">Restore to Test DB</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+    <div style="margin-top: 30px;">
+        <h2>Recent Activity</h2>
+        <table class="log-list">
         <thead>
             <tr>
                 <th>Time</th>
@@ -118,6 +149,20 @@
             } finally {
                 btn.innerText = "Trigger Manual Backup";
                 btn.disabled = false;
+            }
+        }
+
+        async function restoreBackup(filename) {
+            if (!confirm(`Are you sure you want to WIPE the Testing DB and restore ${filename}?`)) {
+                return;
+            }
+
+            try {
+                const res = await fetch(`/restore/${filename}`, { method: 'POST' });
+                const data = await res.json();
+                alert(data.message);
+            } catch (e) {
+                alert("Error triggering restoration");
             }
         }
     </script>

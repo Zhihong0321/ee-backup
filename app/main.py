@@ -6,7 +6,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 import os
 import datetime
 import json
-from .backup import perform_backup, init_db, get_db_connection
+from .backup import perform_backup, init_db, get_db_connection, list_backups, perform_restore
 
 app = FastAPI(title="Sentinel Backup Service")
 
@@ -65,7 +65,23 @@ async def dashboard(request: Request):
             "message": log[5]
         })
 
-    return templates.TemplateResponse("index.html", {"request": request, "logs": formatted_logs})
+    # Fetch available backups for restoration
+    available_backups = list_backups()
+
+    return templates.TemplateResponse("index.html", {
+        "request": request, 
+        "logs": formatted_logs,
+        "backups": available_backups,
+        "test_db_configured": bool(os.getenv("TEST_DATABASE_URL"))
+    })
+
+@app.post("/restore/{filename}")
+async def restore_to_test(filename: str, background_tasks: BackgroundTasks):
+    # For restoration, we might want to track it in logs too, but for now just run it
+    # We can do it synchronously if it's not too large, or background it.
+    # Since it's for "Testing DB", background is safer to avoid UI timeout.
+    background_tasks.add_task(perform_restore, filename)
+    return {"message": f"Restoration of {filename} to Test DB started in background"}
 
 @app.post("/trigger-backup")
 async def trigger_backup(background_tasks: BackgroundTasks):

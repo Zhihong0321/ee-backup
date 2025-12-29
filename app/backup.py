@@ -8,11 +8,79 @@ from botocore.exceptions import NoCredentialsError
 def get_config():
     return {
         "DATABASE_URL": os.getenv("DATABASE_URL"),
+        "TEST_DATABASE_URL": os.getenv("TEST_DATABASE_URL"),
         "R2_ENDPOINT_URL": os.getenv("R2_ENDPOINT_URL"),
         "R2_ACCESS_KEY_ID": os.getenv("R2_ACCESS_KEY_ID"),
         "R2_SECRET_ACCESS_KEY": os.getenv("R2_SECRET_ACCESS_KEY"),
         "R2_BUCKET_NAME": os.getenv("R2_BUCKET_NAME"),
     }
+
+def list_backups():
+    """Lists available backups in the R2 bucket."""
+    config = get_config()
+    validate_config(config, ["R2_ENDPOINT_URL", "R2_ACCESS_KEY_ID", "R2_SECRET_ACCESS_KEY", "R2_BUCKET_NAME"])
+    
+    s3 = boto3.client(
+        's3',
+        endpoint_url=config["R2_ENDPOINT_URL"],
+        aws_access_key_id=config["R2_ACCESS_KEY_ID"],
+        aws_secret_access_key=config["R2_SECRET_ACCESS_KEY"]
+    )
+    
+    response = s3.list_objects_v2(Bucket=config["R2_BUCKET_NAME"])
+    if 'Contents' not in response:
+        return []
+    
+    # Sort by last modified descending
+    backups = sorted(response['Contents'], key=lambda x: x['LastModified'], reverse=True)
+    return [{
+        "filename": b['Key'],
+        "size": b['Size'],
+        "last_modified": b['LastModified'].strftime("%Y-%m-%d %H:%M:%S")
+    } for b in backups]
+
+def perform_restore(filename):
+    """
+    Downloads a backup from R2 and restores it to the TEST_DATABASE_URL.
+    """
+    config = get_config()
+    validate_config(config, ["TEST_DATABASE_URL", "R2_ENDPOINT_URL", "R2_ACCESS_KEY_ID", "R2_SECRET_ACCESS_KEY", "R2_BUCKET_NAME"])
+    
+    if config["TEST_DATABASE_URL"] == config["DATABASE_URL"]:
+        return False, "Safety Error: TEST_DATABASE_URL is the same as production DATABASE_URL!"
+
+    filepath = f"/tmp/{filename}"
+    
+    # 1. Download from R2
+    try:
+        s3 = boto3.client(
+            's3',
+            endpoint_url=config["R2_ENDPOINT_URL"],
+            aws_access_key_id=config["R2_ACCESS_KEY_ID"],
+            aws_secret_access_key=config["R2_SECRET_ACCESS_KEY"]
+        )
+        s3.download_file(config["R2_BUCKET_NAME"], filename, filepath)
+    except Exception as e:
+        return False, f"Download failed: {str(e)}"
+
+    # 2. Reset and Restore
+    try:
+        # Reset: Drop and recreate public schema
+        reset_cmd = f"psql '{config['TEST_DATABASE_URL']}' -c 'DROP SCHEMA public CASCADE; CREATE SCHEMA public;'"
+        subprocess.run(reset_cmd, shell=True, check=True, capture_output=True)
+        
+        # Restore
+        restore_cmd = f"psql '{config['TEST_DATABASE_URL']}' -f {filepath}"
+        subprocess.run(restore_cmd, shell=True, check=True, capture_output=True)
+        
+        os.remove(filepath)
+        return True, f"Successfully restored {filename} to Test DB"
+    except subprocess.CalledProcessError as e:
+        if os.path.exists(filepath): os.remove(filepath)
+        return False, f"Restore failed: {e.stderr.decode()}"
+    except Exception as e:
+        if os.path.exists(filepath): os.remove(filepath)
+        return False, f"Unexpected error: {str(e)}"
 
 
 def validate_config(config, keys):
