@@ -1,0 +1,6362 @@
+{
+    "system_logs": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "timestamp",
+                "type": "timestamp with time zone",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "run_id",
+                "type": "character varying",
+                "nullable": false,
+                "description": "Foreign key reference to run."
+            },
+            {
+                "name": "level",
+                "type": "character varying",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "context",
+                "type": "character varying",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "message",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "metadata",
+                "type": "jsonb",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            }
+        ],
+        "foreign_keys": []
+    },
+    "invoice_item": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "last_synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            },
+            {
+                "name": "description",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "qty",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "amount",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "unit_price",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "is_a_package",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "inv_item_type",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_package",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "epp",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_invoice",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "sort",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_voucher",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "voucher_remark",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "customer": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "last_synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            }
+        ],
+        "foreign_keys": []
+    },
+    "seda_registration": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "last_synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            },
+            {
+                "name": "reg_status",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "drawing_system_submitted",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "state",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "redex_status",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "roof_images",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "sunpeak_hours",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "system_size_in_form_kwp",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "agent",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "project_price",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "system_size",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "city",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_customer",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "inverter_kwac",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "slug",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "estimated_monthly_saving",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "average_tnb",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "price_category",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "g_electric_folder_link",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "g_roof_folder_link",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "installation_address",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_invoice",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "customer_signature",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "email",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "ic_copy_back",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "ic_copy_front",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "tnb_bill_3",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "tnb_bill_1",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "tnb_meter",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "e_contact_no",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "tnb_bill_2",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "drawing_pdf_system",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "e_contact_name",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "seda_status",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "version",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "nem_application_no",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "e_contact_relationship",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "ic_no",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "request_drawing_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "phase_type",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "special_remark",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "tnb_account_no",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "nem_cert",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "property_ownership_prove",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "inverter_serial_no",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "tnb_meter_install_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "tnb_meter_status",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "first_completion_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "e_contact_mykad",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "mykad_pdf",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "nem_type",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "e_email",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "redex_remark",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "site_images",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "company_registration_no",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "drawing_system_actual",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "check_tnb_bill_and_meter_image",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "check_mykad",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "check_ownership",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "check_fill_in_detail",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "drawing_engineering_seda_pdf",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "category": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "last_synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "category_name",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_products",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "agent_content": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "google_drive_link",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "active",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_category",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "title",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "type",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "agent_monthly_commission": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "linked_invoice",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_agent",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "record_month",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "total_bonus_comm",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "total_normal_comm",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "bug_report": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "description",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "report_type",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "is_a_update_",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "report_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "screenshoot",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "is_a_update",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "ai_profile": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "name",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "user_instruction",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "brand": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "name",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "logo",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "ai_contact": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "whatsapp_no_",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "name",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "whatsapp_no",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "career_invitation": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "message",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "expire_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "invitation_code",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "position_to_offer",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "person_to_invite_name",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_agent",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "package_item": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "last_synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            },
+            {
+                "name": "total_cost",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "product",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "qty",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "sort",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "inventory",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "company_setting": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "invoice_request_system_drawing",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "grand_strategy",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "invoice_count",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "seda_request_engineering_drawing",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "content_category": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "cat_name",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_agent_content",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "daily_job_planning": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "dealer_code",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "checkin_person",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "check_in_time",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "planning_today",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "today_report",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "conversation": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "user",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "user_input",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "dealership": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "dealer_tier_bonus",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "dealercode",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "join_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "dealer_name",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "department": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "department_name",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "current_task_last_update",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "current_task",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "hod",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "member",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "assign_task",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "department_report": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "linked_department",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_comment",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "content",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "report_type",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "dept_report_comment": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "comment",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_report",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "ee_calendar": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "ee_circular": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "active_",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "department",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "title",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "read_by",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "file",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "date_of_circular",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "active",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "financial_projection": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "year",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "cumulative_earning",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "degradation",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "follow_up_notes": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "message",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_invoice",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "payment": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "last_synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            },
+            {
+                "name": "payment_method",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "amount",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_agent",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "remark",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "payment_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_invoice",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_customer",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "payment_index",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "attachment",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "verified_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "edit_history",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "issuer_bank",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "epp_month",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "payment_method_v2",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "terminal",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "bank_charges",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "epp_type",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "invoice_payment_planning": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "linked_invoice",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "payment_method_3",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "payment_1_charges",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "final_payment_amount___inclusive",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "epp_option_3",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "1st_payment_amount___inclusive",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "payment_2_epp_charges",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "payment_3_epp_charges",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "2nd_payment_amount___inclusive",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "payment_method_1",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "epp_option_2",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "payment_method_2",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "epp_option_1",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "final_payment_amount_inclusive",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "2nd_payment_amount_inclusive",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "1st_payment_amount_inclusive",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "agent_monthly_perf": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "last_synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            },
+            {
+                "name": "total_amount",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "record_month",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_user",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_invoice",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "all_full_on_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "achieved_tier_bonus",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "generated_commission_report": {
+        "description": "",
+        "columns": [
+            {
+                "name": "report_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to report."
+            },
+            {
+                "name": "agent_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to agent."
+            },
+            {
+                "name": "agent_name",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "month_period",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "total_basic_commission",
+                "type": "numeric",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "total_bonus_commission",
+                "type": "numeric",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "total_adjustments",
+                "type": "numeric",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "final_total_commission",
+                "type": "numeric",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "commission_paid",
+                "type": "boolean",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "invoice_bubble_ids",
+                "type": "jsonb",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp without time zone",
+                "nullable": false,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "paid_at",
+                "type": "timestamp without time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "paid_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "relationship_discovery_status": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "source_table",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "source_field",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "field_type",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "link_status",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "target_table",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "last_checked",
+                "type": "timestamp without time zone",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp without time zone",
+                "nullable": false,
+                "description": "Timestamp when the record was created."
+            }
+        ],
+        "foreign_keys": []
+    },
+    "commission_adjustment": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "text",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp without time zone",
+                "nullable": false,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp without time zone",
+                "nullable": false,
+                "description": "Timestamp when the record was last updated."
+            },
+            {
+                "name": "agent_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to agent."
+            },
+            {
+                "name": "agent_name",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "amount",
+                "type": "numeric",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "description",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "report_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to report."
+            },
+            {
+                "name": "adjustment_month",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_agent",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_invoice",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "join_us_form": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "mobile",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "name",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "email",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "pending_schema_patches": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "table_name",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "field_name",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "original_field_name",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "suggested_type",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "error_message",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "status",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp without time zone",
+                "nullable": false,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "approved_at",
+                "type": "timestamp without time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "approved_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "executed_at",
+                "type": "timestamp without time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "execution_result",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "sync_run_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to sync_run."
+            }
+        ],
+        "foreign_keys": []
+    },
+    "discovery_logs": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "run_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to run."
+            },
+            {
+                "name": "table_name",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "field_name",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "field_type",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "link_status",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "target_table",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "sample_value",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "reason",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "bubble_id_count",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "discovered_at",
+                "type": "timestamp without time zone",
+                "nullable": false,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "package_formula": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "baseprice",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "formula_name",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "installation",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "skylift",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "per_invoice",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "electrical",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "panel_price",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "dcac_ratio",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "agent_daily_report": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "last_synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            },
+            {
+                "name": "activity_type",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_user",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_customer",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "report_point",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "tag",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "report_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "remark",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "eternalgynotification": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "content",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "title",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "checked_agent",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "gallery_image",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "youtube_1",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "eternalgy_agreement": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "last_synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            },
+            {
+                "name": "refund_policy",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "type",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "installation_related",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "disclaimer",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "privacy_policy",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "warranty",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "version_name",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "referal_contact": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "lead_name",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "lead_contact_no",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_agent",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_invoice",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "refer_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "status",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "saving_report": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "panel_type",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "panel_qty",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_invoice",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "sun_peak",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_ori_bill",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "after_solar_bill",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "morning_usage",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "export_generation",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "morning_offset_generation",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "solar_generation",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "submit_payment": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "linked_customer",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "terminal",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "payment_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "amount",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_installment",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_agent",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "attachment",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "payment_method_v2",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_invoice",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "issuer_bank",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "support_ticket": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "link_customer",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "problem_description",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "technician_remark",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "status",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "title",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "images",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "system_setting": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "invoice_id_run",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "landed_view",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "assistant_prompt",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "epp_default_rate",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "whatsapp_click",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "sync_cursors": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "table_name",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "last_cursor",
+                "type": "integer",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "last_sync_at",
+                "type": "timestamp without time zone",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "sync_run_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to sync_run."
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp without time zone",
+                "nullable": false,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp without time zone",
+                "nullable": false,
+                "description": "Timestamp when the record was last updated."
+            }
+        ],
+        "foreign_keys": []
+    },
+    "sync_status": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "text",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "running",
+                "type": "boolean",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "progress",
+                "type": "integer",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "currentTable",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "lastSync",
+                "type": "timestamp without time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "error",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "createdAt",
+                "type": "timestamp without time zone",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "updatedAt",
+                "type": "timestamp without time zone",
+                "nullable": false,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "synced_records": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "text",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "data_type",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "raw_data",
+                "type": "jsonb",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "processed_data",
+                "type": "jsonb",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp without time zone",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp without time zone",
+                "nullable": false,
+                "description": "Timestamp when the record was last updated."
+            }
+        ],
+        "foreign_keys": []
+    },
+    "tariff_b_d_database": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "201_and_above",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "icpt",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "kwtbb",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "usage",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "jumlah",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "first_200kwh",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "tariff_type",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "tnb_bill_database": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "t5_57_1",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "t3_51_6",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "t1_21_8",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "t3_usage",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "kwtbb_1_6",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "t1_usage",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "st_total",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "t2_usage",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "t4_54_6",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "kwh_tanpa_st",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "icpt_surcharge",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "kwh_with_st",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "t2_33_4",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "t4_usage",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "t5_usage",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "total_bill",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "total_kwh",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "commission_adjustment_v2": {
+        "description": "",
+        "columns": [
+            {
+                "name": "adjustment_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to adjustment."
+            },
+            {
+                "name": "report_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to report."
+            },
+            {
+                "name": "invoice_bubble_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to invoice_bubble."
+            },
+            {
+                "name": "agent_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to agent."
+            },
+            {
+                "name": "adjustment_amount",
+                "type": "numeric",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "remark",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp without time zone",
+                "nullable": false,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "customer_profile": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "last_synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            },
+            {
+                "name": "linked_agent",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "address",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "name",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "contact",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "status",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "whatsapp",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "state",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "link_seda_reg",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "chinese_content",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "group_status",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "tnb_tariff_2025": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "last_synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "usage_kwh",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "eei",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "network",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "kwtbb_normal",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "retail",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "usage_normal",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "bill_total_normal",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "capacity",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "sst_normal",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "terminal": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "bank",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "name",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "oversea_credit_card",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "local_credit_card__rate_",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "local_credit_card_rate",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "package_test": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": true,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "inverter_01",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "recal",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "price",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "ratio",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "panel_count",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "system_size",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "price_without_inverter",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "micro_2_2",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "inverter_02",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "package": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "last_synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            },
+            {
+                "name": "linked_package_item",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "package_name",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "price",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "panel",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "active",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "need_approval",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "invoice_desc",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "panel_qty",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "max_discount",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "type",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "special",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "password",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "product": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "last_synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            },
+            {
+                "name": "linked_brand",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "inventory",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "image",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "warranty_name",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "active",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "cost_price",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "selling_price",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "description",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_category",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "name",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "warranty_link",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "label",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "pdf_product",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "product_warranty_desc",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "solar_output_rating",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "inverter_rating",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "voucher": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "last_synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            },
+            {
+                "name": "title",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "invoice_description",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "discount_amount",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "voucher_code",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "terms_conditions",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "active",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "auto_cancel_voucher",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "voucher_availability",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "voucher_type",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "discount_percent",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "deductable_from_commission",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "available_until",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "delete",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "public",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "epp_gateway": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "last_synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "name",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "type",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "invoice": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "last_synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            },
+            {
+                "name": "visit",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "eligible_amount_description",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_seda_registration",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "normal_commission",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_agent",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "performance_tier_month",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "full_payment_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "need_approval",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_package",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "locked_package",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_customer",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "panel_qty",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "dealercode",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_agreement",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "performance_tier_year",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "invoice_id",
+                "type": "integer",
+                "nullable": true,
+                "description": "Foreign key reference to invoice."
+            },
+            {
+                "name": "type",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "last_payment_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "approval_status",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "1st_payment_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "commission_paid",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "paid",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "version",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "amount_eligible_for_comm",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "2nd_payment",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_payment",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "amount",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "invoice_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "1st_payment",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "logs",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_stock_transaction",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "stamp_cash_price",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "percent_of_total_amount",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "stock_status_inv",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_invoice_item",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "perf_tier_commission",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_agent_monthly_perf",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "how_you_win",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "stock_status",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "customer_average_tnb",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "estimated_saving",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_roof_image",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "description",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "state",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_notification",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_follow_up",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "case_status",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "referrer_name",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "customer_signature",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "signature_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "estimated_new_bill_amount",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "effective_epp",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "lead_source",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "strategic_va",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "hide_payment_terms",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "premium_electrical_job",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "panel_rating",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "custom_proposal",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "package_type",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "request_urgent_submission",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_voucher",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "approved_toberemove",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "user_manual_pdf",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_payment_plan",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_saving_report",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_lead_from_customer",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "achieved_monthly_anp",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "1st_payment__",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "2nd_payment__",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "stock_status__",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "epp_option": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "last_synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            },
+            {
+                "name": "bank",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "interest_charges",
+                "type": "numeric",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "tenures",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "agent": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "last_synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_user_login",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "name",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "current_annual_sales",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "contact",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "last_update_annual_sales",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "slug",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "agent_type",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "commission",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "annual_collection",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "intro_youtube",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_by",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "tree_seed",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "email",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "banker",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "bankin_account",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "introducer",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "ic_front",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "ic_back",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "address",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "news_links": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "url",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "url_hash",
+                "type": "character varying",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "title",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "discovered_at",
+                "type": "timestamp without time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "source_task",
+                "type": "character varying",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "status",
+                "type": "character varying",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "error_message",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "processed_at",
+                "type": "timestamp without time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "last_checked",
+                "type": "timestamp without time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp without time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            }
+        ],
+        "foreign_keys": []
+    },
+    "processed_content": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "link_id",
+                "type": "integer",
+                "nullable": true,
+                "description": "Foreign key reference to link."
+            },
+            {
+                "name": "title",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "title_en",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "title_zh",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "title_ms",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "content",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "translated_content",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "tags",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "country",
+                "type": "character varying",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "news_date",
+                "type": "date",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "metadata",
+                "type": "jsonb",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp without time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp without time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            }
+        ],
+        "foreign_keys": [
+            {
+                "column": "link_id",
+                "references_table": "news_links",
+                "references_column": "id"
+            }
+        ]
+    },
+    "blacklisted_sites": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "domain",
+                "type": "character varying",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "url",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "title",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "reason",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp without time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp without time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            }
+        ],
+        "foreign_keys": []
+    },
+    "query_task_runs": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "task_name",
+                "type": "character varying",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "summary",
+                "type": "jsonb",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp without time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            }
+        ],
+        "foreign_keys": []
+    },
+    "query_tasks": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "task_name",
+                "type": "character varying",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "prompt_template",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "is_active",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "schedule",
+                "type": "character varying",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "last_run",
+                "type": "timestamp without time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "total_runs",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "total_links_found",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp without time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp without time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            },
+            {
+                "name": "model",
+                "type": "character varying",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "rewriter_prompts": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "prompt",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp without time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            },
+            {
+                "name": "model",
+                "type": "character varying",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "app_search_tasks": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "name",
+                "type": "character varying",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "query",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "gems_name",
+                "type": "character varying",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "gems_url",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "schedule",
+                "type": "character varying",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "is_active",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "last_run_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            }
+        ],
+        "foreign_keys": []
+    },
+    "app_news_headlines": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "task_id",
+                "type": "integer",
+                "nullable": true,
+                "description": "Foreign key reference to task."
+            },
+            {
+                "name": "headline",
+                "type": "text",
+                "nullable": false,
+                "description": ""
+            },
+            {
+                "name": "news_date",
+                "type": "character varying",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "source",
+                "type": "character varying",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "search_query",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "status",
+                "type": "character varying",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "retry_count",
+                "type": "integer",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "error_message",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            }
+        ],
+        "foreign_keys": [
+            {
+                "column": "task_id",
+                "references_table": "app_search_tasks",
+                "references_column": "id"
+            }
+        ]
+    },
+    "app_news_articles": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "headline_id",
+                "type": "integer",
+                "nullable": true,
+                "description": "Foreign key reference to headline."
+            },
+            {
+                "name": "title_en",
+                "type": "character varying",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "title_zh",
+                "type": "character varying",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "title_ms",
+                "type": "character varying",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "content_en",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "content_zh",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "content_ms",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "summary_en",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "summary_zh",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "summary_ms",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "tags",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            }
+        ],
+        "foreign_keys": [
+            {
+                "column": "headline_id",
+                "references_table": "app_news_headlines",
+                "references_column": "id"
+            }
+        ]
+    },
+    "user": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "bubble_id",
+                "type": "text",
+                "nullable": false,
+                "description": "Foreign key reference to bubble."
+            },
+            {
+                "name": "last_synced_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was created."
+            },
+            {
+                "name": "updated_at",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": "Timestamp when the record was last updated."
+            },
+            {
+                "name": "check_in_report_today",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "dealership",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "created_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "linked_agent_profile",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "authentication",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "access_level",
+                "type": "ARRAY",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "user_signed_up",
+                "type": "boolean",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "profile_picture",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "modified_date",
+                "type": "timestamp with time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "agent_code",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    },
+    "_admin_backup_logs": {
+        "description": "",
+        "columns": [
+            {
+                "name": "id",
+                "type": "integer",
+                "nullable": false,
+                "description": "Primary unique identifier."
+            },
+            {
+                "name": "timestamp",
+                "type": "timestamp without time zone",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "status",
+                "type": "character varying",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "filename",
+                "type": "character varying",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "size_bytes",
+                "type": "bigint",
+                "nullable": true,
+                "description": ""
+            },
+            {
+                "name": "message",
+                "type": "text",
+                "nullable": true,
+                "description": ""
+            }
+        ],
+        "foreign_keys": []
+    }
+}

@@ -5,6 +5,7 @@ from fastapi.templating import Jinja2Templates
 from apscheduler.schedulers.background import BackgroundScheduler
 import os
 import datetime
+import json
 from .backup import perform_backup, init_db, get_db_connection
 
 app = FastAPI(title="Sentinel Backup Service")
@@ -31,6 +32,16 @@ def startup_event():
 templates = Jinja2Templates(directory="app/templates")
 
 # --- Routes ---
+
+@app.get("/schema", response_class=HTMLResponse)
+async def schema_view(request: Request):
+    try:
+        with open("schema_metadata.json", "r") as f:
+            schema_data = json.load(f)
+    except FileNotFoundError:
+        schema_data = {}
+        
+    return templates.TemplateResponse("schema.html", {"request": request, "schema": schema_data})
 
 @app.get("/", response_class=HTMLResponse)
 async def dashboard(request: Request):

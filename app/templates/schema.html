@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Schema - Sentinel Backup</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #c9d1d9;
+            --border-color: #30363d;
+            --card-bg: #161b22;
+            --accent-color: #58a6ff;
+            --secondary-text: #8b949e;
+            --type-color: #79c0ff;
+            --key-color: #d2a8ff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            max-width: 1400px;
+            margin: 0 auto 20px auto;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 { margin: 0; font-size: 24px; }
+        
+        .nav-link { color: var(--accent-color); text-decoration: none; font-size: 14px; }
+        .nav-link:hover { text-decoration: underline; }
+
+        .search-bar {
+            padding: 8px 12px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            border-radius: 6px;
+            width: 300px;
+        }
+
+        .schema-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .table-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .table-header {
+            background-color: #21262d;
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--border-color);
+            font-weight: bold;
+            color: var(--accent-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-desc {
+            padding: 10px 15px;
+            font-size: 13px;
+            color: var(--secondary-text);
+            border-bottom: 1px solid var(--border-color);
+            font-style: italic;
+        }
+
+        .column-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 13px;
+        }
+
+        .column-item {
+            padding: 8px 15px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .column-item:last-child { border-bottom: none; }
+
+        .col-name { font-weight: 600; color: var(--text-color); }
+        .col-type { color: var(--type-color); font-family: monospace; font-size: 12px; }
+        .col-meta { font-size: 11px; color: var(--secondary-text); margin-left: 10px; }
+        
+        .pk-badge { color: var(--key-color); font-weight: bold; font-size: 11px; border: 1px solid var(--key-color); padding: 1px 4px; border-radius: 3px; }
+        .fk-badge { color: #f0883e; font-weight: bold; font-size: 11px; border: 1px solid #f0883e; padding: 1px 4px; border-radius: 3px; }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+        
+        .col-details {
+            display: flex;
+            align-items: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div>
+            <h1>Database Schema</h1>
+            <a href="/" class="nav-link">← Back to Dashboard</a>
+        </div>
+        <input type="text" class="search-bar" id="searchInput" placeholder="Search tables or columns..." onkeyup="filterSchema()">
+    </header>
+
+    <div class="schema-container" id="schemaGrid">
+        {% for table_name, data in schema.items() %}
+        <div class="table-card" data-name="{{ table_name }}">
+            <div class="table-header">
+                {{ table_name }}
+                <span style="font-size: 12px; color: #8b949e;">{{ data.columns|length }} cols</span>
+            </div>
+            {% if data.description %}
+            <div class="table-desc">{{ data.description }}</div>
+            {% endif %}
+            <ul class="column-list">
+                {% for col in data.columns %}
+                <li class="column-item" data-col="{{ col.name }}">
+                    <div class="col-details">
+                        <span class="col-name">{{ col.name }}</span>
+                        {% if col.name == 'id' %}
+                            <span class="pk-badge" style="margin-left: 8px;">PK</span>
+                        {% endif %}
+                        {% for fk in data.foreign_keys %}
+                            {% if fk.column == col.name %}
+                                <span class="fk-badge" style="margin-left: 8px;" title="Ref: {{ fk.references_table }}.{{ fk.references_column }}">FK</span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div style="text-align: right;">
+                        <span class="col-type">{{ col.type }}</span>
+                        {% if not col.nullable %}<span class="col-meta">NN</span>{% endif %}
+                    </div>
+                </li>
+                {% if col.description %}
+                <li style="padding: 4px 15px; font-size: 11px; color: #8b949e; border-bottom: 1px solid #30363d;">
+                    {{ col.description }}
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        function filterSchema() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const cards = document.getElementsByClassName('table-card');
+
+            for (let i = 0; i < cards.length; i++) {
+                const title = cards[i].getAttribute('data-name');
+                const cols = cards[i].innerHTML; // Lazy search in all content
+                
+                if (title.toLowerCase().indexOf(filter) > -1 || cols.toLowerCase().indexOf(filter) > -1) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
