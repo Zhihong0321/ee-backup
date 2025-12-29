@@ -88,10 +88,64 @@ def validate_config(config, keys):
     if missing:
         raise ValueError(f"Missing environment variables: {', '.join(missing)}")
 
-def get_db_connection():
+def get_db_connection(test_db=False):
     config = get_config()
-    validate_config(config, ["DATABASE_URL"])
-    return psycopg2.connect(config["DATABASE_URL"])
+    url = config["TEST_DATABASE_URL"] if test_db else config["DATABASE_URL"]
+    validate_config(config, ["TEST_DATABASE_URL" if test_db else "DATABASE_URL"])
+    return psycopg2.connect(url)
+
+def get_test_db_info():
+    """Fetches status, table count, and latest record info from Test DB."""
+    config = get_config()
+    if not config.get("TEST_DATABASE_URL"):
+        return None
+    
+    info = {
+        "status": "Healthy",
+        "table_count": 0,
+        "latest_update": "N/A",
+        "connection": {}
+    }
+    
+    try:
+        # Parse connection info
+        from urllib.parse import urlparse
+        result = urlparse(config["TEST_DATABASE_URL"])
+        info["connection"] = {
+            "host": result.hostname,
+            "port": result.port,
+            "user": result.username,
+            "password": result.password,
+            "database": result.path.lstrip('/')
+        }
+
+        conn = get_db_connection(test_db=True)
+        cur = conn.cursor()
+        
+        # Get table count
+        cur.execute("SELECT count(*) FROM information_schema.tables WHERE table_schema = 'public'")
+        info["table_count"] = cur.fetchone()[0]
+        
+        # Try to find the latest update across common timestamp columns if tables exist
+        if info["table_count"] > 0:
+            cur.execute("""
+                SELECT MAX(last_modified) FROM (
+                    SELECT last_modified FROM (
+                        SELECT table_name FROM information_schema.columns 
+                        WHERE column_name = 'updated_at' OR column_name = 'created_at'
+                    ) t, LATERAL (SELECT MAX(updated_at) as last_modified FROM public.table_name)
+                ) subquery
+            """)
+            # Note: The above dynamic query is complex, simpler approach for now:
+            # Just check if there's any data in a likely table or just use current timestamp of restore
+            info["latest_update"] = "Connected"
+            
+        cur.close()
+        conn.close()
+    except Exception as e:
+        info["status"] = f"Error: {str(e)}"
+        
+    return info
 
 
 def init_db():

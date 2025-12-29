@@ -6,7 +6,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 import os
 import datetime
 import json
-from .backup import perform_backup, init_db, get_db_connection, list_backups, perform_restore
+from .backup import perform_backup, init_db, get_db_connection, list_backups, perform_restore, get_test_db_info
 
 app = FastAPI(title="Sentinel Backup Service")
 
@@ -67,12 +67,13 @@ async def dashboard(request: Request):
 
     # Fetch available backups for restoration
     available_backups = list_backups()
+    test_db_info = get_test_db_info()
 
     return templates.TemplateResponse("index.html", {
         "request": request, 
         "logs": formatted_logs,
         "backups": available_backups,
-        "test_db_configured": bool(os.getenv("TEST_DATABASE_URL"))
+        "test_db_info": test_db_info
     })
 
 @app.post("/restore/{filename}")

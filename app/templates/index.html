@@ -81,7 +81,38 @@
         <button class="primary" onclick="triggerBackup()">Trigger Manual Backup</button>
     </div>
 
-    {% if test_db_configured %}
+    {% if test_db_info %}
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px;">
+        <!-- Test DB Status Card -->
+        <div style="background: #161b22; border: 1px solid var(--border-color); padding: 20px; border-radius: 6px;">
+            <h2 style="margin-top: 0; font-size: 1.2em;">Test DB Status</h2>
+            <div style="margin-bottom: 10px;">
+                <span style="color: #8b949e;">Health:</span> 
+                <span class="{{ 'status-success' if 'Healthy' in test_db_info.status else 'status-failed' }}">{{ test_db_info.status }}</span>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <span style="color: #8b949e;">Total Tables:</span> 
+                <span>{{ test_db_info.table_count }}</span>
+            </div>
+            <div>
+                <span style="color: #8b949e;">Data State:</span> 
+                <span>{{ test_db_info.latest_update }}</span>
+            </div>
+        </div>
+
+        <!-- Connection Info Card -->
+        <div style="background: #161b22; border: 1px solid var(--border-color); padding: 20px; border-radius: 6px;">
+            <h2 style="margin-top: 0; font-size: 1.2em;">Localhost Connection Info</h2>
+            <code style="background: #0d1117; display: block; padding: 10px; font-size: 0.85em; color: #79c0ff; word-break: break-all;">
+                HOST: {{ test_db_info.connection.host }}<br>
+                PORT: {{ test_db_info.connection.port }}<br>
+                USER: {{ test_db_info.connection.user }}<br>
+                PASS: {{ test_db_info.connection.password }}<br>
+                DB: &nbsp;&nbsp;{{ test_db_info.connection.database }}
+            </code>
+        </div>
+    </div>
+
     <div style="margin-top: 30px;">
         <h2>Restore to Test DB</h2>
         <p style="font-size: 0.9em; color: #8b949e;">Restoring will <strong>WIPE</strong> the testing database and load the selected backup.</p>
