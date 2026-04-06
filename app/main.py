@@ -28,14 +28,33 @@ def scheduled_job():
 
 @app.on_event("startup")
 def startup_event():
-    init_db()
-    # Configure Schedule from Env or Default to 3 AM
-    hour = int(os.getenv("BACKUP_CRON_HOUR", 3))
-    minute = int(os.getenv("BACKUP_CRON_MINUTE", 0))
-    
-    scheduler.add_job(scheduled_job, 'cron', hour=hour, minute=minute)
-    scheduler.start()
-    print(f"Scheduler started. Backup set for {hour:02d}:{minute:02d} daily.")
+    try:
+        init_db()
+    except Exception as exc:
+        print(f"Startup warning: init_db failed: {exc}")
+
+    try:
+        hour = int(os.getenv("BACKUP_CRON_HOUR", 3))
+        minute = int(os.getenv("BACKUP_CRON_MINUTE", 0))
+    except ValueError as exc:
+        print(f"Startup warning: invalid backup schedule config: {exc}")
+        hour = 3
+        minute = 0
+
+    try:
+        if not scheduler.running:
+            scheduler.add_job(
+                scheduled_job,
+                'cron',
+                hour=hour,
+                minute=minute,
+                id="daily_backup",
+                replace_existing=True
+            )
+            scheduler.start()
+        print(f"Scheduler ready. Backup set for {hour:02d}:{minute:02d} daily.")
+    except Exception as exc:
+        print(f"Startup warning: scheduler failed to start: {exc}")
 
 # --- UI Setup ---
 templates = Jinja2Templates(directory="app/templates")
@@ -92,14 +111,36 @@ async def dashboard(request: Request):
         test_db_info = None
         dashboard_errors.append(f"Test DB status unavailable: {exc}")
 
-    return templates.TemplateResponse("index.html", {
-        "request": request, 
+    context = {
+        "request": request,
         "logs": formatted_logs,
         "backups": available_backups,
         "test_db_info": test_db_info,
         "retention_days": RETENTION_DAYS,
         "dashboard_errors": dashboard_errors
-    })
+    }
+
+    try:
+        return templates.TemplateResponse("index.html", context)
+    except Exception as exc:
+        error_items = "".join(
+            f"<li>{error}</li>" for error in (dashboard_errors or [f"Dashboard render failed: {exc}"])
+        )
+        return HTMLResponse(
+            f"""
+            <html>
+                <head><title>Sentinel Backup</title></head>
+                <body style="font-family: Arial, sans-serif; padding: 24px;">
+                    <h1>Sentinel Backup</h1>
+                    <p>The dashboard could not render fully, but the service is running.</p>
+                    <p><a href="/health">Health Check</a></p>
+                    <h2>Warnings</h2>
+                    <ul>{error_items}</ul>
+                </body>
+            </html>
+            """,
+            status_code=200
+        )
 
 @app.post("/restore/{filename}")
 async def restore_to_test(filename: str, background_tasks: BackgroundTasks):
