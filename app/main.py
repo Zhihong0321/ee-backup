@@ -75,6 +75,8 @@ async def schema_view(request: Request):
 async def dashboard(request: Request):
     formatted_logs = []
     dashboard_errors = []
+    available_backups = []
+    normalized_test_db_info = None
 
     try:
         conn = get_db_connection()
@@ -91,6 +93,7 @@ async def dashboard(request: Request):
             formatted_logs.append({
                 "timestamp": log[1].strftime("%Y-%m-%d %H:%M:%S"),
                 "status": log[2],
+                "status_class": "status-success" if log[2] == "SUCCESS" else "status-failed",
                 "filename": log[3],
                 "size": f"{size_mb} MB",
                 "message": log[5]
@@ -100,22 +103,41 @@ async def dashboard(request: Request):
 
     # Fetch available backups for restoration
     try:
-        available_backups = list_backups()
+        raw_backups = list_backups()
+        available_backups = [{
+            "filename": backup["filename"],
+            "size_mb": round(backup["size"] / (1024 * 1024), 2),
+            "last_modified": backup["last_modified"]
+        } for backup in raw_backups]
     except Exception as exc:
         available_backups = []
         dashboard_errors.append(f"Backup list unavailable: {exc}")
 
     try:
         test_db_info = get_test_db_info()
+        if test_db_info:
+            connection = test_db_info.get("connection") or {}
+            status_text = str(test_db_info.get("status", "Unknown"))
+            normalized_test_db_info = {
+                "status": status_text,
+                "status_class": "status-success" if "Healthy" in status_text else "status-failed",
+                "table_count": test_db_info.get("table_count", 0),
+                "latest_update": test_db_info.get("latest_update", "N/A"),
+                "connection_host": connection.get("host", "N/A"),
+                "connection_port": connection.get("port", "N/A"),
+                "connection_user": connection.get("user", "N/A"),
+                "connection_password": connection.get("password", "N/A"),
+                "connection_database": connection.get("database", "N/A"),
+            }
     except Exception as exc:
-        test_db_info = None
+        normalized_test_db_info = None
         dashboard_errors.append(f"Test DB status unavailable: {exc}")
 
     context = {
         "request": request,
         "logs": formatted_logs,
         "backups": available_backups,
-        "test_db_info": test_db_info,
+        "test_db_info": normalized_test_db_info,
         "retention_days": RETENTION_DAYS,
         "dashboard_errors": dashboard_errors
     }

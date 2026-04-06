@@ -143,7 +143,7 @@
             <h2 style="margin-top: 0; font-size: 1.2em;">Test DB Status</h2>
             <div style="margin-bottom: 10px;">
                 <span style="color: #8b949e;">Health:</span> 
-                <span class="{{ 'status-success' if 'Healthy' in test_db_info.status else 'status-failed' }}">{{ test_db_info.status }}</span>
+                <span class="{{ test_db_info.status_class }}">{{ test_db_info.status }}</span>
             </div>
             <div style="margin-bottom: 10px;">
                 <span style="color: #8b949e;">Total Tables:</span> 
@@ -160,11 +160,11 @@
             <h2 style="margin-top: 0; font-size: 1.2em;">Test DB Connection Info</h2>
             <p style="font-size: 0.85em; color: #8b949e; margin-bottom: 15px;">Use these credentials to connect from your local dev environment to the Railway test DB.</p>
             <code style="background: #0d1117; display: block; padding: 10px; font-size: 0.85em; color: #79c0ff; word-break: break-all;">
-                HOST: {{ test_db_info.connection.host }}<br>
-                PORT: {{ test_db_info.connection.port }}<br>
-                USER: {{ test_db_info.connection.user }}<br>
-                PASS: {{ test_db_info.connection.password }}<br>
-                DB: &nbsp;&nbsp;{{ test_db_info.connection.database }}
+                HOST: {{ test_db_info.connection_host }}<br>
+                PORT: {{ test_db_info.connection_port }}<br>
+                USER: {{ test_db_info.connection_user }}<br>
+                PASS: {{ test_db_info.connection_password }}<br>
+                DB: &nbsp;&nbsp;{{ test_db_info.connection_database }}
             </code>
         </div>
     </div>
@@ -185,7 +185,7 @@
                 {% for backup in backups %}
                 <tr>
                     <td>{{ backup.filename }}</td>
-                    <td>{{ (backup.size / (1024*1024))|round(2) }} MB</td>
+                    <td>{{ backup.size_mb }} MB</td>
                     <td>{{ backup.last_modified }}</td>
                     <td>
                         <button onclick="restoreBackup('{{ backup.filename }}')">Restore to Test DB</button>
@@ -213,7 +213,7 @@
             {% for log in logs %}
             <tr>
                 <td>{{ log.timestamp }}</td>
-                <td class="{{ 'status-success' if log.status == 'SUCCESS' else 'status-failed' }}">{{ log.status }}</td>
+                <td class="{{ log.status_class }}">{{ log.status }}</td>
                 <td>{{ log.filename }}</td>
                 <td>{{ log.size }}</td>
                 <td>{{ log.message }}</td>
