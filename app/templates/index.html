@@ -52,6 +52,33 @@
             border: none;
         }
 
+        button.danger {
+            background-color: var(--fail-color);
+            color: white;
+            border: none;
+        }
+
+        button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .control-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .retention-card {
+            margin-top: 24px;
+            background: #161b22;
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--fail-color);
+            padding: 18px 20px;
+            border-radius: 6px;
+        }
+
         .log-list {
             margin-top: 20px;
             width: 100%;
@@ -78,7 +105,18 @@
         <div>
             <strong>Status:</strong> System Active | <a href="/schema" style="color: var(--accent-color); text-decoration: none;">View Schema</a>
         </div>
-        <button class="primary" onclick="triggerBackup()">Trigger Manual Backup</button>
+        <div class="control-actions">
+            <button class="primary" id="trigger-backup-btn" onclick="triggerBackup()">Trigger Manual Backup</button>
+            <button class="danger" id="cleanup-old-backups-btn" onclick="cleanupOldBackups()">Wipe Backups Older Than {{ retention_days }} Days</button>
+        </div>
+    </div>
+
+    <div class="retention-card">
+        <h2 style="margin: 0 0 8px; font-size: 1.1em;">Backup Retention</h2>
+        <p style="margin: 0; color: #8b949e;">
+            Automatic cleanup keeps only the last {{ retention_days }} days of backups after each new backup.
+            Use the red button above to immediately delete anything older than {{ retention_days }} days.
+        </p>
     </div>
 
     {% if test_db_info %}
@@ -169,7 +207,7 @@
 
     <script>
         async function triggerBackup() {
-            const btn = document.querySelector('button.primary');
+            const btn = document.getElementById('trigger-backup-btn');
             btn.innerText = "Starting...";
             btn.disabled = true;
 
@@ -180,6 +218,34 @@
                 alert("Error triggering backup");
             } finally {
                 btn.innerText = "Trigger Manual Backup";
+                btn.disabled = false;
+            }
+        }
+
+        async function cleanupOldBackups() {
+            const btn = document.getElementById('cleanup-old-backups-btn');
+
+            if (!confirm(`Delete all backups older than {{ retention_days }} days? This cannot be undone.`)) {
+                return;
+            }
+
+            btn.innerText = "Wiping...";
+            btn.disabled = true;
+
+            try {
+                const res = await fetch('/cleanup-old-backups', { method: 'POST' });
+                const data = await res.json();
+
+                if (!res.ok) {
+                    throw new Error(data.detail || "Cleanup failed");
+                }
+
+                alert(data.message);
+                window.location.reload();
+            } catch (e) {
+                alert(e.message || "Error deleting old backups");
+            } finally {
+                btn.innerText = "Wipe Backups Older Than {{ retention_days }} Days";
                 btn.disabled = false;
             }
         }

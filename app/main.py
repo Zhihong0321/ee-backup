@@ -6,7 +6,16 @@ from apscheduler.schedulers.background import BackgroundScheduler
 import os
 import datetime
 import json
-from .backup import perform_backup, init_db, get_db_connection, list_backups, perform_restore, get_test_db_info
+from .backup import (
+    perform_backup,
+    init_db,
+    get_db_connection,
+    list_backups,
+    perform_restore,
+    get_test_db_info,
+    delete_old_backups,
+    RETENTION_DAYS,
+)
 
 app = FastAPI(title="Sentinel Backup Service")
 
@@ -73,7 +82,8 @@ async def dashboard(request: Request):
         "request": request, 
         "logs": formatted_logs,
         "backups": available_backups,
-        "test_db_info": test_db_info
+        "test_db_info": test_db_info,
+        "retention_days": RETENTION_DAYS
     })
 
 @app.post("/restore/{filename}")
@@ -88,6 +98,22 @@ async def restore_to_test(filename: str, background_tasks: BackgroundTasks):
 async def trigger_backup(background_tasks: BackgroundTasks):
     background_tasks.add_task(perform_backup)
     return {"message": "Backup triggered in background"}
+
+@app.post("/cleanup-old-backups")
+async def cleanup_old_backups():
+    try:
+        result = delete_old_backups()
+        return {
+            "message": (
+                f"Deleted {result['deleted_count']} backup(s) older than "
+                f"{result['retention_days']} days."
+            ),
+            "deleted_count": result["deleted_count"],
+            "deleted_files": result["deleted_files"],
+            "retention_days": result["retention_days"]
+        }
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=f"Cleanup failed: {exc}")
 
 @app.get("/health")
 def health_check():
