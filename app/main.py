@@ -54,36 +54,51 @@ async def schema_view(request: Request):
 
 @app.get("/", response_class=HTMLResponse)
 async def dashboard(request: Request):
-    conn = get_db_connection()
-    cur = conn.cursor()
-    # Fetch last 50 logs
-    cur.execute("SELECT id, timestamp, status, filename, size_bytes, message FROM _admin_backup_logs ORDER BY timestamp DESC LIMIT 50")
-    logs = cur.fetchall()
-    cur.close()
-    conn.close()
-    
     formatted_logs = []
-    for log in logs:
-        # Simple size formatter
-        size_mb = round(log[4] / (1024 * 1024), 2) if log[4] else 0
-        formatted_logs.append({
-            "timestamp": log[1].strftime("%Y-%m-%d %H:%M:%S"),
-            "status": log[2],
-            "filename": log[3],
-            "size": f"{size_mb} MB",
-            "message": log[5]
-        })
+    dashboard_errors = []
+
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor()
+        # Fetch last 50 logs
+        cur.execute("SELECT id, timestamp, status, filename, size_bytes, message FROM _admin_backup_logs ORDER BY timestamp DESC LIMIT 50")
+        logs = cur.fetchall()
+        cur.close()
+        conn.close()
+
+        for log in logs:
+            # Simple size formatter
+            size_mb = round(log[4] / (1024 * 1024), 2) if log[4] else 0
+            formatted_logs.append({
+                "timestamp": log[1].strftime("%Y-%m-%d %H:%M:%S"),
+                "status": log[2],
+                "filename": log[3],
+                "size": f"{size_mb} MB",
+                "message": log[5]
+            })
+    except Exception as exc:
+        dashboard_errors.append(f"Recent activity unavailable: {exc}")
 
     # Fetch available backups for restoration
-    available_backups = list_backups()
-    test_db_info = get_test_db_info()
+    try:
+        available_backups = list_backups()
+    except Exception as exc:
+        available_backups = []
+        dashboard_errors.append(f"Backup list unavailable: {exc}")
+
+    try:
+        test_db_info = get_test_db_info()
+    except Exception as exc:
+        test_db_info = None
+        dashboard_errors.append(f"Test DB status unavailable: {exc}")
 
     return templates.TemplateResponse("index.html", {
         "request": request, 
         "logs": formatted_logs,
         "backups": available_backups,
         "test_db_info": test_db_info,
-        "retention_days": RETENTION_DAYS
+        "retention_days": RETENTION_DAYS,
+        "dashboard_errors": dashboard_errors
     })
 
 @app.post("/restore/{filename}")

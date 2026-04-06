@@ -79,6 +79,14 @@
             border-radius: 6px;
         }
 
+        .error-card {
+            margin-top: 24px;
+            background: rgba(218, 54, 51, 0.12);
+            border: 1px solid rgba(218, 54, 51, 0.45);
+            padding: 16px 20px;
+            border-radius: 6px;
+        }
+
         .log-list {
             margin-top: 20px;
             width: 100%;
@@ -118,6 +126,15 @@
             Use the red button above to immediately delete anything older than {{ retention_days }} days.
         </p>
     </div>
+
+    {% if dashboard_errors %}
+    <div class="error-card">
+        <h2 style="margin: 0 0 8px; font-size: 1.1em;">Connection Warnings</h2>
+        {% for error in dashboard_errors %}
+        <p style="margin: 8px 0 0; color: #ffb3b0;">{{ error }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
 
     {% if test_db_info %}
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px;">
