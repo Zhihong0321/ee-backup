@@ -68,8 +68,12 @@ async def schema_view(request: Request):
             schema_data = json.load(f)
     except FileNotFoundError:
         schema_data = {}
-        
-    return templates.TemplateResponse("schema.html", {"request": request, "schema": schema_data})
+
+    return templates.TemplateResponse(
+        request=request,
+        name="schema.html",
+        context={"request": request, "schema": schema_data}
+    )
 
 @app.get("/", response_class=HTMLResponse)
 async def dashboard(request: Request):
@@ -143,7 +147,11 @@ async def dashboard(request: Request):
     }
 
     try:
-        return templates.TemplateResponse("index.html", context)
+        return templates.TemplateResponse(
+            request=request,
+            name="index.html",
+            context=context
+        )
     except Exception as exc:
         error_items = "".join(
             f"<li>{error}</li>" for error in (dashboard_errors or [f"Dashboard render failed: {exc}"])
