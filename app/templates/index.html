@@ -87,14 +87,6 @@
             border-radius: 6px;
         }
 
-        .warning-card {
-            margin-top: 24px;
-            background: rgba(255, 193, 7, 0.12);
-            border: 1px solid rgba(255, 193, 7, 0.45);
-            padding: 16px 20px;
-            border-radius: 6px;
-        }
-
         .log-list {
             margin-top: 20px;
             width: 100%;
@@ -133,6 +125,10 @@
             Automatic cleanup keeps only the last {{ retention_days }} days of backups after each new backup.
             Use the red button above to immediately delete anything older than {{ retention_days }} days.
         </p>
+        <p style="margin: 10px 0 0; color: #8b949e;">
+            This service is backup-only. It reads the source database with <code>pg_dump</code> and stores snapshots in R2.
+            It does not restore or write to any database.
+        </p>
     </div>
 
     {% if dashboard_errors %}
@@ -144,52 +140,33 @@
     </div>
     {% endif %}
 
-    {% if restore_safety_warning %}
-    <div class="warning-card">
-        <h2 style="margin: 0 0 8px; font-size: 1.1em;">Restore Safety</h2>
-        <p style="margin: 0; color: #f2cc60;">{{ restore_safety_warning }}</p>
-    </div>
-    {% endif %}
-
-    {% if test_db_info %}
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px;">
-        <!-- Test DB Status Card -->
         <div style="background: #161b22; border: 1px solid var(--border-color); padding: 20px; border-radius: 6px;">
-            <h2 style="margin-top: 0; font-size: 1.2em;">Test DB Status</h2>
+            <h2 style="margin-top: 0; font-size: 1.2em;">Backup Mode</h2>
             <div style="margin-bottom: 10px;">
-                <span style="color: #8b949e;">Health:</span> 
-                <span class="{{ test_db_info.status_class }}">{{ test_db_info.status }}</span>
-            </div>
-            <div style="margin-bottom: 10px;">
-                <span style="color: #8b949e;">Total Tables:</span> 
-                <span>{{ test_db_info.table_count }}</span>
+                <span style="color: #8b949e;">Database Access:</span>
+                <span>Read-only via <code>pg_dump</code></span>
             </div>
             <div>
-                <span style="color: #8b949e;">Data State:</span> 
-                <span>{{ test_db_info.latest_update }}</span>
+                <span style="color: #8b949e;">Storage:</span>
+                <span>Cloudflare R2 / S3 bucket</span>
             </div>
         </div>
 
-        <!-- Connection Info Card -->
         <div style="background: #161b22; border: 1px solid var(--border-color); padding: 20px; border-radius: 6px;">
-            <h2 style="margin-top: 0; font-size: 1.2em;">Test DB Connection Info</h2>
-            <p style="font-size: 0.85em; color: #8b949e; margin-bottom: 15px;">Use these credentials to connect from your local dev environment to the Railway test DB.</p>
-            <code style="background: #0d1117; display: block; padding: 10px; font-size: 0.85em; color: #79c0ff; word-break: break-all;">
-                HOST: {{ test_db_info.connection_host }}<br>
-                PORT: {{ test_db_info.connection_port }}<br>
-                USER: {{ test_db_info.connection_user }}<br>
-                PASS: {{ test_db_info.connection_password }}<br>
-                DB: &nbsp;&nbsp;{{ test_db_info.connection_database }}
-            </code>
+            <h2 style="margin-top: 0; font-size: 1.2em;">What This Service Does</h2>
+            <p style="font-size: 0.9em; color: #8b949e; margin: 0;">
+                1. Read the configured source database.<br>
+                2. Create a SQL dump file.<br>
+                3. Upload the dump to object storage.<br>
+                4. Keep only the last {{ retention_days }} days of backups.
+            </p>
         </div>
     </div>
 
     <div style="margin-top: 30px;">
-        <h2>Restore to Test DB</h2>
-        <p style="font-size: 0.9em; color: #8b949e;">Restoring will <strong>WIPE</strong> the testing database and load the selected backup.</p>
-        {% if not restore_enabled %}
-        <p style="font-size: 0.9em; color: #f2cc60;">Restore is currently disabled. Set <code>ENABLE_TEST_RESTORE=true</code> only when you intentionally need a test restore.</p>
-        {% endif %}
+        <h2>Stored Backups</h2>
+        <p style="font-size: 0.9em; color: #8b949e;">Backups are stored in object storage only. No restore action is available from this service.</p>
         <table class="log-list">
             <thead>
                 <tr>
@@ -205,40 +182,12 @@
                     <td>{{ backup.filename }}</td>
                     <td>{{ backup.size_mb }} MB</td>
                     <td>{{ backup.last_modified }}</td>
-                    <td>
-                        <button onclick="restoreBackup('{{ backup.filename }}')" {% if not restore_enabled %}disabled{% endif %}>Restore to Test DB</button>
-                    </td>
+                    <td>Stored</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
-    {% endif %}
-
-    <div style="margin-top: 30px;">
-        <h2>Recent Activity</h2>
-        <table class="log-list">
-        <thead>
-            <tr>
-                <th>Time</th>
-                <th>Status</th>
-                <th>File</th>
-                <th>Size</th>
-                <th>Message</th>
-            </tr>
-        </thead>
-        <tbody id="log-body">
-            {% for log in logs %}
-            <tr>
-                <td>{{ log.timestamp }}</td>
-                <td class="{{ log.status_class }}">{{ log.status }}</td>
-                <td>{{ log.filename }}</td>
-                <td>{{ log.size }}</td>
-                <td>{{ log.message }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
 
     <script>
         async function triggerBackup() {
@@ -282,20 +231,6 @@
             } finally {
                 btn.innerText = "Wipe Backups Older Than {{ retention_days }} Days";
                 btn.disabled = false;
-            }
-        }
-
-        async function restoreBackup(filename) {
-            if (!confirm(`Are you sure you want to WIPE the Testing DB and restore ${filename}?`)) {
-                return;
-            }
-
-            try {
-                const res = await fetch(`/restore/${filename}`, { method: 'POST' });
-                const data = await res.json();
-                alert(data.message);
-            } catch (e) {
-                alert("Error triggering restoration");
             }
         }
     </script>
