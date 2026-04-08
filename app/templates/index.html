@@ -87,6 +87,14 @@
             border-radius: 6px;
         }
 
+        .warning-card {
+            margin-top: 24px;
+            background: rgba(255, 193, 7, 0.12);
+            border: 1px solid rgba(255, 193, 7, 0.45);
+            padding: 16px 20px;
+            border-radius: 6px;
+        }
+
         .log-list {
             margin-top: 20px;
             width: 100%;
@@ -136,6 +144,13 @@
     </div>
     {% endif %}
 
+    {% if restore_safety_warning %}
+    <div class="warning-card">
+        <h2 style="margin: 0 0 8px; font-size: 1.1em;">Restore Safety</h2>
+        <p style="margin: 0; color: #f2cc60;">{{ restore_safety_warning }}</p>
+    </div>
+    {% endif %}
+
     {% if test_db_info %}
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px;">
         <!-- Test DB Status Card -->
@@ -172,6 +187,9 @@
     <div style="margin-top: 30px;">
         <h2>Restore to Test DB</h2>
         <p style="font-size: 0.9em; color: #8b949e;">Restoring will <strong>WIPE</strong> the testing database and load the selected backup.</p>
+        {% if not restore_enabled %}
+        <p style="font-size: 0.9em; color: #f2cc60;">Restore is currently disabled. Set <code>ENABLE_TEST_RESTORE=true</code> only when you intentionally need a test restore.</p>
+        {% endif %}
         <table class="log-list">
             <thead>
                 <tr>
@@ -188,7 +206,7 @@
                     <td>{{ backup.size_mb }} MB</td>
                     <td>{{ backup.last_modified }}</td>
                     <td>
-                        <button onclick="restoreBackup('{{ backup.filename }}')">Restore to Test DB</button>
+                        <button onclick="restoreBackup('{{ backup.filename }}')" {% if not restore_enabled %}disabled{% endif %}>Restore to Test DB</button>
                     </td>
                 </tr>
                 {% endfor %}

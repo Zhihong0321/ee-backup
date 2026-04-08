@@ -15,6 +15,9 @@ from .backup import (
     get_test_db_info,
     delete_old_backups,
     RETENTION_DAYS,
+    restore_is_enabled,
+    same_database_target,
+    get_config,
 )
 
 app = FastAPI(title="Sentinel Backup Service")
@@ -81,6 +84,15 @@ async def dashboard(request: Request):
     dashboard_errors = []
     available_backups = []
     normalized_test_db_info = None
+    restore_enabled = restore_is_enabled()
+    restore_safety_warning = None
+
+    try:
+        config = get_config()
+        if same_database_target(config.get("TEST_DATABASE_URL"), config.get("DATABASE_URL")):
+            restore_safety_warning = "Restore target matches production database. Restore is blocked for safety."
+    except Exception as exc:
+        dashboard_errors.append(f"Restore safety check unavailable: {exc}")
 
     try:
         conn = get_db_connection()
@@ -143,7 +155,9 @@ async def dashboard(request: Request):
         "backups": available_backups,
         "test_db_info": normalized_test_db_info,
         "retention_days": RETENTION_DAYS,
-        "dashboard_errors": dashboard_errors
+        "dashboard_errors": dashboard_errors,
+        "restore_enabled": restore_enabled,
+        "restore_safety_warning": restore_safety_warning,
     }
 
     try:

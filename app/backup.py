@@ -1,6 +1,7 @@
 import os
 import subprocess
 import datetime
+from urllib.parse import urlparse
 import boto3
 import psycopg2
 from botocore.exceptions import NoCredentialsError
@@ -39,9 +40,12 @@ def perform_restore(filename):
     """
     config = get_config()
     validate_config(config, ["TEST_DATABASE_URL", "R2_ENDPOINT_URL", "R2_ACCESS_KEY_ID", "R2_SECRET_ACCESS_KEY", "R2_BUCKET_NAME"])
-    
-    if config["TEST_DATABASE_URL"] == config["DATABASE_URL"]:
-        return False, "Safety Error: TEST_DATABASE_URL is the same as production DATABASE_URL!"
+
+    if not restore_is_enabled():
+        return False, "Restore is disabled. Set ENABLE_TEST_RESTORE=true to allow restore operations."
+
+    if same_database_target(config["TEST_DATABASE_URL"], config["DATABASE_URL"]):
+        return False, "Safety Error: TEST_DATABASE_URL points to the same database target as production."
 
     filepath = f"/tmp/{filename}"
     
@@ -81,6 +85,27 @@ def validate_config(config, keys):
     missing = [k for k in keys if not config.get(k)]
     if missing:
         raise ValueError(f"Missing environment variables: {', '.join(missing)}")
+
+def normalize_database_target(url):
+    parsed = urlparse(url)
+    port = parsed.port
+    if port is None:
+        if parsed.scheme in ("postgres", "postgresql"):
+            port = 5432
+    return {
+        "scheme": parsed.scheme,
+        "host": (parsed.hostname or "").lower(),
+        "port": port,
+        "database": parsed.path.lstrip('/'),
+    }
+
+def same_database_target(url_a, url_b):
+    if not url_a or not url_b:
+        return False
+    return normalize_database_target(url_a) == normalize_database_target(url_b)
+
+def restore_is_enabled():
+    return os.getenv("ENABLE_TEST_RESTORE", "").strip().lower() == "true"
 
 def get_s3_client(config):
     return boto3.client(
@@ -150,14 +175,12 @@ def get_test_db_info():
     }
     
     try:
-        # Parse connection info
-        from urllib.parse import urlparse
         result = urlparse(config["TEST_DATABASE_URL"])
         info["connection"] = {
             "host": result.hostname,
             "port": result.port,
             "user": result.username,
-            "password": result.password,
+            "password": mask_secret(result.password),
             "database": result.path.lstrip('/')
         }
 
@@ -178,6 +201,13 @@ def get_test_db_info():
         info["status"] = f"Error: {str(e)}"
         
     return info
+
+def mask_secret(secret):
+    if not secret:
+        return "N/A"
+    if len(secret) <= 4:
+        return "*" * len(secret)
+    return f"{secret[:2]}{'*' * (len(secret) - 4)}{secret[-2:]}"
 
 
 def init_db():
